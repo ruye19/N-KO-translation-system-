@@ -1,0 +1,14 @@
+# Version ranges rather than hard pins: this project targets whatever modern
+# Python the developer has (3.10+), and hard pins break on newer interpreters
+# that do not yet have matching wheels.
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.9
+pydantic-settings>=2.4
+python-dotenv>=1.0
+anthropic>=2.0,<3
+google-genai>=1.0
+httpx>=0.27
+
+# Testing
+pytest>=8.0
