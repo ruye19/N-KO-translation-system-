@@ -49,18 +49,47 @@ class DictionaryService(ABC):
         """Return entries relevant to `text`. Must return [] when unavailable."""
 
     def format_context(self, entries: list[DictionaryEntry]) -> str | None:
+        """Render entries as reference lines for the prompt.
+
+        Unverified entries deliberately carry no N'Ko text: their raw script is
+        undecoded legacy-font data, so emitting it would hand the model
+        meaningless characters that look like N'Ko.
+
+        Because the N'Ko is withheld, several senses of one headword would
+        otherwise render as identical lines, so they are collapsed into one
+        with a sense count.
+        """
         if not entries:
             return None
-        lines = []
+
+        lines: list[str] = []
+        seen_unverified: dict[tuple, int] = {}
+        placeholders: list[tuple] = []
+
         for e in entries:
             if e.is_verified and e.target_term:
                 pos_str = f" ({e.pos})" if e.pos else ""
                 pg_str = f", p.{e.page_number}" if e.page_number else ""
-                lines.append(f"- {e.source_term}{pos_str} = {e.target_term} [Verified N'Ko{pg_str}]")
+                lines.append(
+                    f"- {e.source_term}{pos_str} = {e.target_term} [Verified N'Ko{pg_str}]"
+                )
             else:
-                pos_str = f"{e.pos}, " if e.pos else ""
-                pg_str = f" p.{e.page_number}," if e.page_number else ""
-                lines.append(f"- {e.source_term} [{pos_str}dictionary ref{pg_str} N'Ko script unverified]")
+                key = (e.source_term, e.pos, e.page_number)
+                if key not in seen_unverified:
+                    seen_unverified[key] = 0
+                    placeholders.append(key)
+                seen_unverified[key] += 1
+
+        for source_term, pos, page_number in placeholders:
+            count = seen_unverified[(source_term, pos, page_number)]
+            pos_str = f"{pos}, " if pos else ""
+            pg_str = f" p.{page_number}," if page_number else ""
+            senses = f" {count} senses," if count > 1 else ""
+            lines.append(
+                f"- {source_term} [{pos_str}dictionary ref{pg_str}{senses} "
+                "N'Ko script undecoded - do not treat as N'Ko]"
+            )
+
         return "\n".join(lines) if lines else None
 
 

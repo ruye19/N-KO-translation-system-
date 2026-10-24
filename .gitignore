@@ -26,3 +26,7 @@ data/*
 .idea/
 .DS_Store
 Thumbs.db
+
+# Regenerable build/verification artefacts
+vite.config.js.timestamp-*.mjs
+data/glyph_evidence/

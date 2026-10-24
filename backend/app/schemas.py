@@ -17,8 +17,15 @@ class TranslateResponse(BaseModel):
     target_language: str
     provider: str
     model: str
-    # True only if verified dictionary context was actually supplied.
+    # True when dictionary reference context was included in the prompt.
+    # NOTE: this means a French headword matched, NOT that a usable N'Ko
+    # translation was supplied. See dictionary_nko_verified.
     dictionary_used: bool = False
+    # How many dictionary entries were included as reference context.
+    dictionary_entries_found: int = 0
+    # True only if verified Unicode N'Ko from the dictionary reached the model.
+    # Always False while the legacy font encoding is unresolved.
+    dictionary_nko_verified: bool = False
     # Always False in version 1: nothing here has been checked by a human.
     human_verified: bool = False
     notice: str = (

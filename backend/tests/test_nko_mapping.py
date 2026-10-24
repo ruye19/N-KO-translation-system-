@@ -1,6 +1,5 @@
 """Unit tests for N'Ko character and font encoding mapping."""
 
-import pytest
 from app.services.nko_mapping import (
     MappingStatus,
     VERIFIED_DIGIT_MAP,
@@ -55,11 +54,34 @@ def test_get_mapping_entry_arabic_indic_digit():
     assert entry9.target_unicode == "\u07C9"
 
 
-def test_get_mapping_entry_punctuation():
-    # Arabic comma (U+060C) -> N'Ko comma (U+07F8)
+def test_punctuation_is_passthrough_not_nko_recovery():
+    """U+060C is an Arabic comma in this font, NOT the N'Ko comma U+07F8.
+
+    Shape evidence (scripts/verify_glyph_mappings.py): the PDF glyph scores
+    0.582 against U+060C and only 0.261 against U+07F8. Rewriting it to U+07F8
+    would substitute a different character, so it is kept unchanged.
+    """
     comma_entry = get_mapping_entry("\u060C")
-    assert comma_entry.status == MappingStatus.VERIFIED
-    assert comma_entry.target_unicode == "\u07F8"
+    assert comma_entry.status == MappingStatus.PASSTHROUGH
+    assert comma_entry.target_unicode == "\u060C"
+    assert comma_entry.target_unicode != "\u07F8"
+
+
+def test_punctuation_alone_cannot_become_verified_nko():
+    """Regression: a lone comma used to convert to a 'verified' N'Ko comma."""
+    result = convert_nko_token("\u060C")
+    assert result.is_verified is False
+    assert result.converted_text == ""
+
+    mixed = convert_nko_token("\u060C abc")
+    assert mixed.is_verified is False
+
+
+def test_recovered_digits_still_count_as_nko():
+    """The digit mapping IS evidence-backed, so it must keep working."""
+    result = convert_nko_token("\u0661\u0662\u0663")
+    assert result.is_verified is True
+    assert result.converted_text == "\u07C1\u07C2\u07C3"
 
 
 def test_get_mapping_entry_pua_is_unverified():

@@ -3,7 +3,7 @@
 import logging
 
 from app.config import Settings
-from app.errors import EmptyTranslationError, ProviderNotConfiguredError
+from app.errors import InvalidOutputEncodingError, ProviderNotConfiguredError
 from app.languages import NKO
 from app.schemas import TranslateResponse
 from app.services import nko_text
@@ -36,6 +36,9 @@ class TranslationService:
 
         entries = self._dictionary.lookup(text, source, target)
         context = self._dictionary.format_context(entries)
+        # A matched headword is not a usable N'Ko translation. Report the two
+        # separately so callers cannot mistake one for the other.
+        verified_nko_supplied = any(e.is_verified and e.target_term for e in entries)
 
         system_prompt = build_system_prompt(source, target)
         user_prompt = build_user_prompt(source, target, text, context)
@@ -47,19 +50,20 @@ class TranslationService:
         translation = result.text
         warnings = list(result.warnings)
 
-        # Output sanity checks. These never fabricate a translation; they only
-        # clean obviously-invalid characters and tell the caller what happened.
+        # Output sanity checks. These never fabricate or silently repair a
+        # translation. Private Use Area characters cannot be valid N'Ko, and
+        # deleting them would change the meaning while still looking like a
+        # success, so the whole result is rejected instead.
         if nko_text.contains_pua(translation):
-            cleaned = nko_text.strip_pua(translation).strip()
-            warnings.append(
-                "The model emitted Private Use Area characters, which are not "
-                "valid N'Ko. They were removed; review this result carefully."
+            offending = sorted({f"U+{ord(c):04X}" for c in translation if nko_text.is_pua_char(c)})
+            logger.warning(
+                "Rejected %s->%s output containing %d Private Use Area codepoint(s): %s",
+                source,
+                target,
+                len(offending),
+                ", ".join(offending[:8]),
             )
-            translation = cleaned
-            if not translation:
-                raise EmptyTranslationError(
-                    "The provider returned only invalid (Private Use Area) characters."
-                )
+            raise InvalidOutputEncodingError()
 
         if target == NKO and not nko_text.contains_nko(translation):
             warnings.append(
@@ -74,6 +78,8 @@ class TranslationService:
             provider=self._provider.name,
             model=result.model,
             dictionary_used=bool(context),
+            dictionary_entries_found=len(entries),
+            dictionary_nko_verified=verified_nko_supplied,
             human_verified=False,
             warnings=warnings,
         )

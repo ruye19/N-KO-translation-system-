@@ -173,17 +173,41 @@ encoding or keyboard chart accompanies the dictionary.
 
 ## 8. Effect on the application
 
+*(Updated 2026-10-24: the dictionary has since been extracted and a lookup
+service added. The encoding blocker below is unchanged.)*
+
 The translator does not depend on any of this:
 
-- `DICTIONARY_ENABLED` defaults to `false`.
-- `app/services/dictionary.py` ships `NullDictionaryService`, which returns no
-  entries and never invents one. The `DictionaryService` interface is in place
-  so a verified implementation can be added without touching the API or UI.
-- `dictionary_used` in every API response is therefore `false` today, and says
-  so honestly.
-- The backend additionally strips any Private Use Area characters from model
-  output and flags it as a warning, so legacy-font characters can never reach a
-  user as if they were N'Ko (`app/services/nko_text.py`).
+- `DICTIONARY_ENABLED` defaults to `false`. With it set to `true` and
+  `data/dictionary.sqlite` present, `SQLiteDictionaryService` serves **French
+  headwords, parts of speech and page numbers only**.
+- **No N'Ko from the dictionary is usable.** All 32,057 entries are stored with
+  `is_verified = 0` and an empty `verified_nko`; the undecoded legacy text is
+  kept in `raw_target` for future work. Lookups never return it, and the prompt
+  labels every entry `N'Ko script undecoded - do not treat as N'Ko`.
+- `dictionary_used` means *reference context was added to the prompt* — i.e. a
+  French headword matched. It does **not** mean a N'Ko translation was
+  supplied. The response reports `dictionary_nko_verified` separately, and that
+  is `false` for every request today.
+- If the model returns Private Use Area characters, the backend **rejects the
+  whole response** (`invalid_output_encoding`, HTTP 502) rather than deleting
+  the offending characters, because silently stripping them would change the
+  meaning while still looking like a success.
+
+### 8.1 What is and is not recovered
+
+Exactly one mapping has been recovered from the legacy encoding: the **digits**.
+The legacy font stores N'Ko digit glyphs at the Arabic-Indic codepoints
+`U+0660..U+0669`, verified by glyph-shape comparison against Ebrima (all ten
+favour the N'Ko digit decisively; see `docs/DICTIONARY_INTEGRATION_REPORT.md`
+§7.3). Reproduce with `python scripts/verify_glyph_mappings.py`.
+
+Punctuation is **not** recovered. An earlier revision claimed `U+060C` → `U+07F8`
+(N'Ko comma) as verified; shape comparison refutes it (0.261 against the N'Ko
+comma versus 0.582 against the Arabic comma), so punctuation is passed through
+unchanged.
+
+The N'Ko **letters** remain entirely undecoded.
 
 ## 9. Evidence files
 

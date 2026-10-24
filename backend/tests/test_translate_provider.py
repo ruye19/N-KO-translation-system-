@@ -83,18 +83,56 @@ def test_response_structure_is_complete(client_with_provider):
     assert body["dictionary_used"] is False  # dictionary is disabled in v1
 
 
-def test_pua_characters_are_stripped_and_flagged(client_with_provider):
+def test_mixed_valid_and_pua_output_is_rejected_not_silently_stripped(client_with_provider):
+    """Deleting the bad characters would change the meaning of the rest.
+
+    The whole response is rejected instead, so a corrupted translation is never
+    presented as a success.
+    """
     c = client_with_provider(FakeProvider(result=NKO_HELLO + PUA_TEXT))
-    body = _post(c).json()
-    assert body["translation"] == NKO_HELLO
-    assert any("Private Use Area" in w for w in body["warnings"])
+    r = _post(c)
+    assert r.status_code == 502
+    assert r.json()["error"]["code"] == "invalid_output_encoding"
+    assert "translation" not in r.json()
 
 
 def test_pua_only_output_is_an_error_not_a_translation(client_with_provider):
     c = client_with_provider(FakeProvider(result=PUA_TEXT))
     r = _post(c)
     assert r.status_code == 502
-    assert r.json()["error"]["code"] == "empty_translation"
+    assert r.json()["error"]["code"] == "invalid_output_encoding"
+
+
+def test_valid_unicode_nko_output_is_accepted(client_with_provider):
+    c = client_with_provider(FakeProvider(result=NKO_HELLO))
+    body = _post(c).json()
+    assert body["translation"] == NKO_HELLO
+    assert body["warnings"] == []
+
+
+def test_french_accents_are_not_mistaken_for_bad_encoding(client_with_provider):
+    """French output is ordinary Latin-1; accents must pass through intact."""
+    french = "Comment allez-vous ? J'ai mangé du pain à l'hôtel, ça va très bien."
+    c = client_with_provider(FakeProvider(result=french))
+    r = c.post(
+        "/api/translate",
+        json={"source_language": "nko", "target_language": "fr", "text": NKO_HELLO},
+    )
+    assert r.status_code == 200
+    assert r.json()["translation"] == french
+
+
+def test_english_output_is_accepted_without_nko_warning(client_with_provider):
+    c = client_with_provider(FakeProvider(result="How are you?"))
+    r = c.post(
+        "/api/translate",
+        json={"source_language": "nko", "target_language": "en", "text": NKO_HELLO},
+    )
+    assert r.status_code == 200
+    body = r.json()
+    assert body["translation"] == "How are you?"
+    # The "no N'Ko characters" warning applies only when N'Ko is the target.
+    assert not any("no N'Ko characters" in w for w in body["warnings"])
 
 
 def test_missing_nko_in_nko_output_is_flagged(client_with_provider):

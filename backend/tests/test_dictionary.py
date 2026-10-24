@@ -3,6 +3,8 @@
 import sqlite3
 from pathlib import Path
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
 import pytest
 from app.config import Settings
 from app.languages import ENGLISH, FRENCH, NKO
@@ -152,7 +154,9 @@ def test_format_context_distinguishes_verified_and_unverified():
 
     formatted = service.format_context([unverified_entry, verified_entry])
     assert formatted is not None
-    assert "- bonjour [n.m., dictionary ref p.67, N'Ko script unverified]" in formatted
+    assert "- bonjour [n.m., dictionary ref p.67, N'Ko script undecoded" in formatted
+    # The unverified line must never carry N'Ko-looking text.
+    assert "" not in formatted
     assert "- arbre (n.m.) = \u07D9\u07CB\u07D9 [Verified N'Ko, p.42]" in formatted
 
 
@@ -205,9 +209,12 @@ def test_get_dictionary_service_toggle(temp_db: Path):
 
 def test_real_database_lookups_if_present():
     """Verify integration against data/dictionary.sqlite if the file has been generated."""
-    db_path = Path("data/dictionary.sqlite")
+    # Resolve from the repository root, not the current working directory:
+    # pytest runs from backend/, so a bare relative path silently skipped this
+    # test even when the database was present.
+    db_path = REPO_ROOT / "data" / "dictionary.sqlite"
     if not db_path.exists():
-        pytest.skip("data/dictionary.sqlite not present")
+        pytest.skip(f"{db_path} not present; run scripts/extract_dictionary.py")
 
     service = SQLiteDictionaryService(str(db_path))
     assert service.is_available() is True

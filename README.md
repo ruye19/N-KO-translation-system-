@@ -40,7 +40,8 @@ backend/            FastAPI service
       translation.py   Orchestration: validate -> prompt -> provider -> check
       prompt.py        Prompt construction
       nko_text.py      N'Ko / Private-Use-Area character handling
-      dictionary.py    Dictionary interface (disabled - see below)
+      dictionary.py    SQLite lookup: French headwords only (see below)
+      nko_mapping.py   Legacy-font mapping; digits recovered, letters blocked
       providers/       Provider abstraction (base, anthropic, gemini, registry)
   tests/            Test suite
 frontend/           React + Vite translator UI
@@ -49,7 +50,8 @@ docs/
   TECHNICAL_PLAN.md
   TRANSLATION_SCOPE.md
   DICTIONARY.md
-  DICTIONARY_ENCODING_INVESTIGATION.md   Why the dictionary is not yet wired in
+  DICTIONARY_ENCODING_INVESTIGATION.md   Legacy font analysis; what is still blocked
+  DICTIONARY_INTEGRATION_REPORT.md       Extraction metrics, schema, and audit (§7)
   evidence/                              Rendered glyphs + extracted CMap
   dictionnaire Fr_nko.pdf                Source dictionary (unchanged, read-only)
 ```
@@ -138,7 +140,7 @@ All backend settings live in `backend/.env` (git-ignored). See
 |---|---|---|
 | `TRANSLATION_PROVIDER` | `gemini` | `gemini` or `anthropic` |
 | `GEMINI_API_KEY` | *(none)* | Google credential. **Server-side only.** |
-| `GEMINI_MODEL` | `gemini-2.5-pro` | Model name, changeable without code edits |
+| `GEMINI_MODEL` | `gemini-3.8-flash` | Model name, changeable without code edits |
 | `GEMINI_MAX_TOKENS` | `4096` | Output length cap |
 | `GEMINI_TEMPERATURE` | `0.2` | Low: translation should be faithful, not creative |
 | `ANTHROPIC_API_KEY` | *(none)* | Anthropic credential. **Server-side only.** |
@@ -168,7 +170,7 @@ All backend settings live in `backend/.env` (git-ignored). See
   "status": "ok",
   "provider": "gemini",
   "provider_configured": true,
-  "model": "gemini-2.5-pro",
+  "model": "gemini-3.8-flash",
   "dictionary_enabled": false,
   "max_input_chars": 5000
 }
@@ -200,8 +202,10 @@ Success (`200`):
   "source_language": "en",
   "target_language": "nko",
   "provider": "gemini",
-  "model": "gemini-2.5-pro",
+  "model": "gemini-3.8-flash",
   "dictionary_used": false,
+  "dictionary_entries_found": 0,
+  "dictionary_nko_verified": false,
   "human_verified": false,
   "notice": "AI-assisted translation. Not reviewed by a human N'Ko speaker; accuracy is not guaranteed.",
   "warnings": []
@@ -221,6 +225,7 @@ Errors always use the same shape:
 | 429 | `provider_rate_limited` | Provider rate limit |
 | 500 | `internal_error` | Unexpected server error |
 | 502 | `provider_auth_failed`, `provider_unavailable`, `empty_translation` | Provider problem |
+| 502 | `invalid_output_encoding` | Output contained Private Use Area characters and was rejected rather than silently stripped |
 | 503 | `provider_not_configured` | No API key configured |
 | 504 | `provider_timeout` | Provider too slow |
 
@@ -285,11 +290,37 @@ An extraction pipeline is implemented in [`scripts/extract_dictionary.py`](scrip
   python scripts/extract_dictionary.py
   ```
 
-### Encoding Status & Honest Handling
-The PDF's N'Ko body text is set in a legacy pre-Unicode embedded font (`N'ko2Manden-1saDofanen`) mapping glyphs to Private Use Area (`U+F120`–`U+F1E1`).
-- To prevent corrupting translations with invalid PUA characters, all extracted entries are stored with `is_verified = 0` and `verified_nko = ""`.
-- The database stores full French headword, part-of-speech, and page provenance.
-- When `DICTIONARY_ENABLED=true` in `backend/.env`, verified French headword and grammatical context are supplied as reference context to translation models.
+### What the dictionary does and does not give you
+
+The five states below are deliberately kept distinct, because they are easy to
+conflate:
+
+| # | State | Count |
+|---|---|---|
+| 1 | Entries extracted from the PDF | **32,057** |
+| 2 | Searchable French headwords (normalised) | **29,526** |
+| 3 | Entries whose N'Ko side is raw, undecoded legacy text | **32,057** |
+| 4 | Entries with verified Unicode N'Ko | **0** |
+| 5 | Entries reviewed by a knowledgeable N'Ko speaker | **0** |
+
+**Lookup is usable today for 1–2 only.** The PDF's N'Ko body text is set in a
+legacy pre-Unicode font (`N'ko2Manden-1saDofanen`) whose glyphs land in the
+Private Use Area (`U+F120`–`U+F1E1`), so states 3–5 remain blocked.
+
+- With `DICTIONARY_ENABLED=true` and `data/dictionary.sqlite` present, a lookup
+  returns the **French headword, its part of speech and its page number**.
+- It returns **no N'Ko**. Every entry is stored `is_verified = 0` with an empty
+  `verified_nko`; the undecoded text is preserved in `raw_target` for future
+  decoding and never leaves the service.
+- The prompt labels each entry `N'Ko script undecoded - do not treat as N'Ko`
+  and instructs the model not to reconstruct N'Ko from it.
+- `dictionary_used: true` means **reference context was added** — a French
+  headword matched. It does *not* mean a N'Ko translation was supplied. The
+  response also returns `dictionary_entries_found` and
+  `dictionary_nko_verified` (always `false` today).
+- One mapping *has* been recovered from the legacy encoding: the **digits**
+  (`U+0660`–`U+0669` → `U+07C0`–`U+07C9`), confirmed by glyph-shape evidence.
+  Verify it yourself with `python scripts/verify_glyph_mappings.py`.
 - For complete technical details, see:
   - [`docs/DICTIONARY_ENCODING_INVESTIGATION.md`](docs/DICTIONARY_ENCODING_INVESTIGATION.md): Detailed font analysis and why PUA cannot be blindly converted.
   - [`docs/DICTIONARY_INTEGRATION_REPORT.md`](docs/DICTIONARY_INTEGRATION_REPORT.md): Full extraction metrics, architecture, database schema, and test report.

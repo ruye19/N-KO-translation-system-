@@ -224,16 +224,37 @@ Do not assume that possession of the PDF automatically grants unrestricted redis
 
 ## 11. Current Status
 
-The dictionary is available as a project resource.
+*(Updated 2026-10-24.)*
 
-The following are NOT yet finalized:
+Settled:
 
-- extraction method
-- complete structured schema
-- parser
-- search/index technology
-- retrieval strategy
-- AI provider
-- evaluation benchmark
+- **Extraction method** - `scripts/extract_dictionary.py` (pypdf + regex entry
+  parsing). Reproducible: re-running pages 22-41 reproduces the stored rows
+  exactly.
+- **Schema and store** - SQLite, `data/dictionary.sqlite`, table
+  `dictionary_entries` indexed on `headword_normalized`. 32,057 entries,
+  29,526 distinct normalised headwords, pages 22-498.
+- **Retrieval** - normalised headword lookup with French stop-word filtering
+  (`SQLiteDictionaryService`). No full-text or vector search: a direct lookup
+  is sufficient for word-level retrieval and nothing yet justifies more.
+- **Raw preservation** - `data/raw_extraction.jsonl` keeps every entry's
+  undecoded N'Ko text and its unresolved codepoints.
 
-These decisions should be made after sample inspection.
+Still open:
+
+- **N'Ko decoding.** The blocker. See section 6 and
+  `docs/DICTIONARY_ENCODING_INVESTIGATION.md`. Only the digits are recovered;
+  all letters remain Private Use Area glyphs.
+- **Evaluation benchmark** - not started; needs a literate N'Ko reviewer.
+
+### Counts, stated precisely
+
+| State | Count |
+|---|---|
+| Entries extracted | 32,057 |
+| Searchable French headwords | 29,526 |
+| Entries whose N'Ko is raw/undecoded | 32,057 |
+| Entries with verified Unicode N'Ko | **0** |
+| Entries reviewed by a knowledgeable speaker | **0** |
+
+A matched French headword is **not** a usable N'Ko translation.

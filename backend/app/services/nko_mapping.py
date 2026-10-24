@@ -1,22 +1,72 @@
-"""N'Ko Character and Font Encoding Mapping.
+"""N'Ko character and legacy font encoding mapping.
 
-Records verified character mappings between legacy PDF font representations
-and official Unicode N'Ko (U+07C0..U+07FF), and clearly marks unverified PUA
-(Private Use Area) code points as UNKNOWN.
+Distinguishes three different things that are easy to conflate:
 
-CRITICAL PRINCIPLE:
+1. RECOVERY   - a legacy codepoint whose glyph in the PDF font has been shown
+                to be a particular Unicode N'Ko character. Only the digits
+                qualify (see EVIDENCE below).
+2. PASSTHROUGH - a character that is already valid and is kept exactly as it
+                is (ASCII, French accents, Arabic punctuation). This is NOT
+                recovery of N'Ko and must never, on its own, make text count
+                as verified N'Ko.
+3. UNRESOLVED - Private Use Area glyphs from the legacy font, which have no
+                known Unicode equivalent.
+
+CRITICAL PRINCIPLE
 Never claim an unverified PUA code point is valid Unicode N'Ko without
-deterministic encoding specification or verified ground-truth evidence.
+deterministic encoding evidence.
+
+EVIDENCE (measured 2026-10-24, reproducible with scripts/verify_glyph_mappings.py)
+Glyphs were rendered from the PDF's embedded `N'ko2Manden-1saDofanen` subset
+and compared by shape (intersection-over-union, best of a translation search)
+against Ebrima, a Microsoft font with genuine Unicode N'Ko coverage.
+
+Digits - legacy U+0660..U+0669 carry N'Ko digit glyphs:
+
+    legacy    vs U+07Cx (N'Ko)   vs U+066x (Arabic-Indic)
+    U+0660          0.602                 0.198
+    U+0661          0.591                 0.126
+    U+0662          0.526                 0.195
+    U+0663          0.653                 0.183
+    U+0664          0.636                 0.211
+    U+0665          0.775                 0.124
+    U+0666          0.606                 0.129
+    U+0667          0.774                 0.279
+    U+0668          0.695                 0.227
+    U+0669          0.784                 0.230
+
+All ten favour the N'Ko digit decisively and unanimously, so the digit
+mapping is genuine recovery.
+
+Punctuation - NOT recovered. A previous revision of this file claimed
+U+060C -> U+07F8 (N'Ko comma) as "verified". Shape comparison refutes it:
+
+    U+060C glyph vs U+07F8 (N'KO COMMA)      0.261
+    U+060C glyph vs U+060C (ARABIC COMMA)    0.582   <- the actual glyph
+
+The PDF's U+060C is an Arabic comma and rendering it as U+07F8 would silently
+substitute a different character. U+061B and U+061F were likewise marked
+"verified" without evidence (their PDF glyphs do not match the Arabic
+semicolon/question mark cleanly either). All three are therefore passthrough
+only, and U+061B's ToUnicode value is not trustworthy at all.
 """
 
 from dataclasses import dataclass, field
 from enum import Enum
 from typing import Optional
 
+NKO_BLOCK_START, NKO_BLOCK_END = 0x07C0, 0x07FF
+PUA_START, PUA_END = 0xE000, 0xF8FF
+
 
 class MappingStatus(str, Enum):
+    #: Legacy codepoint deterministically recovered to Unicode N'Ko.
     VERIFIED = "verified"
+    #: Already-valid character kept as-is. Not evidence of N'Ko.
+    PASSTHROUGH = "passthrough"
+    #: Legacy Private Use Area glyph with no known Unicode equivalent.
     UNVERIFIED_PUA = "unverified_pua"
+    #: Anything else.
     UNKNOWN = "unknown"
 
 
@@ -29,6 +79,14 @@ class MappingEntry:
     confidence: float
     description: str
 
+    @property
+    def is_resolved(self) -> bool:
+        """True when the character can be emitted safely (recovered or kept)."""
+        return (
+            self.status in (MappingStatus.VERIFIED, MappingStatus.PASSTHROUGH)
+            and self.target_unicode is not None
+        )
+
 
 @dataclass
 class ConversionResult:
@@ -39,49 +97,44 @@ class ConversionResult:
     unresolved_chars: list[str] = field(default_factory=list)
 
 
-# Verified digit mappings: The legacy N'ko2Manden font mapped N'Ko digits to
-# Arabic-Indic digit codepoints U+0660..U+0669. In official Unicode N'Ko, these
-# correspond to U+07C0..U+07C9.
+# --- Recovery -------------------------------------------------------------
+# The legacy font stores N'Ko digit glyphs at the Arabic-Indic digit
+# codepoints. Shape-verified; see EVIDENCE in the module docstring.
 VERIFIED_DIGIT_MAP: dict[int, str] = {
-    0x0660: "\u07C0",  # ߀ N'KO DIGIT ZERO
-    0x0661: "\u07C1",  # ߁ N'KO DIGIT ONE
-    0x0662: "\u07C2",  # ߂ N'KO DIGIT TWO
-    0x0663: "\u07C3",  # ߃ N'KO DIGIT THREE
-    0x0664: "\u07C4",  # ߄ N'KO DIGIT FOUR
-    0x0665: "\u07C5",  # ߅ N'KO DIGIT FIVE
-    0x0666: "\u07C6",  # ߆ N'KO DIGIT SIX
-    0x0667: "\u07C7",  # ߇ N'KO DIGIT SEVEN
-    0x0668: "\u07C8",  # ߈ N'KO DIGIT EIGHT
-    0x0669: "\u07C9",  # ߉ N'KO DIGIT NINE
+    0x0660 + i: chr(0x07C0 + i) for i in range(10)
 }
 
-# Verified punctuation mappings:
-VERIFIED_PUNCTUATION_MAP: dict[int, str] = {
-    0x060C: "\u07F8",  # ߸ N'KO COMMA (Arabic comma in legacy font)
-    0x061B: "\u061B",  # Arabic semicolon (used in N'Ko typography)
-    0x061F: "\u061F",  # Arabic question mark
-    0x002E: ".",       # Full stop
-    0x003A: ":",       # Colon
-    0x0028: "(",       # Parentheses
-    0x0029: ")",
-    0x002F: "/",       # Slash
-    0x002D: "-",       # Hyphen
-    0x0020: " ",       # Space
+# --- Passthrough ----------------------------------------------------------
+# Characters kept exactly as they are. Mapping a character to itself is
+# normalisation, not recovery, so none of these can make text "verified N'Ko".
+PASSTHROUGH_PUNCTUATION: dict[int, str] = {
+    cp: chr(cp)
+    for cp in (
+        0x060C,  # Arabic comma - the PDF glyph really is an Arabic comma
+        0x061B,  # Arabic semicolon - ToUnicode value is NOT trustworthy here
+        0x061F,  # Arabic question mark
+        0x066A,  # Arabic percent sign
+    )
 }
+
+#: Retained for backwards compatibility with earlier imports. These are
+#: passthrough characters, despite the historical name.
+VERIFIED_PUNCTUATION_MAP = PASSTHROUGH_PUNCTUATION
 
 
 def is_pua(cp: int) -> bool:
-    """True if codepoint is in BMP Private Use Area (U+E000..U+F8FF)."""
-    return 0xE000 <= cp <= 0xF8FF
+    """True if codepoint is in the BMP Private Use Area (U+E000..U+F8FF)."""
+    return PUA_START <= cp <= PUA_END
 
 
 def is_unicode_nko(cp: int) -> bool:
     """True if codepoint is in the official Unicode N'Ko block (U+07C0..U+07FF)."""
-    return 0x07C0 <= cp <= 0x07FF
+    return NKO_BLOCK_START <= cp <= NKO_BLOCK_END
 
 
 def get_mapping_entry(char: str) -> MappingEntry:
     cp = ord(char)
+
     if is_unicode_nko(cp):
         return MappingEntry(
             source_char=char,
@@ -91,6 +144,7 @@ def get_mapping_entry(char: str) -> MappingEntry:
             confidence=1.0,
             description="Native Unicode N'Ko character (U+07C0..U+07FF)",
         )
+
     if cp in VERIFIED_DIGIT_MAP:
         target = VERIFIED_DIGIT_MAP[cp]
         return MappingEntry(
@@ -99,18 +153,22 @@ def get_mapping_entry(char: str) -> MappingEntry:
             target_unicode=target,
             status=MappingStatus.VERIFIED,
             confidence=1.0,
-            description=f"Arabic-Indic digit to Unicode N'Ko digit ({target})",
+            description=(
+                f"Legacy Arabic-Indic digit recovered to Unicode N'Ko digit "
+                f"U+{ord(target):04X} (shape-verified)"
+            ),
         )
-    if cp in VERIFIED_PUNCTUATION_MAP:
-        target = VERIFIED_PUNCTUATION_MAP[cp]
+
+    if cp in PASSTHROUGH_PUNCTUATION:
         return MappingEntry(
             source_char=char,
             source_codepoint=cp,
-            target_unicode=target,
-            status=MappingStatus.VERIFIED,
+            target_unicode=char,
+            status=MappingStatus.PASSTHROUGH,
             confidence=1.0,
-            description=f"Punctuation mapping ({target})",
+            description="Punctuation kept unchanged (not recovered N'Ko)",
         )
+
     if is_pua(cp):
         return MappingEntry(
             source_char=char,
@@ -118,25 +176,47 @@ def get_mapping_entry(char: str) -> MappingEntry:
             target_unicode=None,
             status=MappingStatus.UNVERIFIED_PUA,
             confidence=0.0,
-            description="Legacy Private Use Area glyph (unresolved without original font layout)",
+            description=(
+                "Legacy Private Use Area glyph (unresolved without the "
+                "original font layout)"
+            ),
         )
+
+    if cp < 128:
+        return MappingEntry(
+            source_char=char,
+            source_codepoint=cp,
+            target_unicode=char,
+            status=MappingStatus.PASSTHROUGH,
+            confidence=1.0,
+            description="ASCII kept unchanged (not recovered N'Ko)",
+        )
+
+    # Everything else (e.g. French accents, Hebrew/Arabic letters that appear
+    # in the extraction) is kept but never counts as N'Ko evidence.
     return MappingEntry(
         source_char=char,
         source_codepoint=cp,
-        target_unicode=char if cp < 128 else None,
-        status=MappingStatus.VERIFIED if cp < 128 else MappingStatus.UNKNOWN,
-        confidence=1.0 if cp < 128 else 0.0,
-        description="Standard ASCII" if cp < 128 else "Unknown non-ASCII character",
+        target_unicode=char,
+        status=MappingStatus.PASSTHROUGH,
+        confidence=1.0,
+        description="Non-ASCII character kept unchanged (not recovered N'Ko)",
     )
 
 
 def convert_nko_token(text: str) -> ConversionResult:
-    """Convert a token or string from the dictionary.
+    """Convert a token or string extracted from the dictionary.
 
-    Returns a ConversionResult indicating whether all non-space characters
-    were deterministically resolved into official Unicode N'Ko / verified text.
-    If ANY character is an unverified PUA codepoint, `is_verified` is False,
-    the raw text is preserved, and `unresolved_chars` lists the unknown codes.
+    `is_verified` is True only when BOTH hold:
+      * every character resolved (no Private Use Area glyphs), and
+      * at least one character is genuine N'Ko - either already in the N'Ko
+        block or recovered from the evidence-backed digit map.
+
+    Punctuation and ASCII alone can never satisfy the second condition, so a
+    stray comma cannot masquerade as a verified N'Ko translation.
+
+    When not verified, `converted_text` is empty: callers must fall back to the
+    preserved `raw_text` rather than display a partial conversion.
     """
     if not text:
         return ConversionResult(
@@ -149,29 +229,28 @@ def convert_nko_token(text: str) -> ConversionResult:
 
     converted_chars: list[str] = []
     unresolved: list[str] = []
-    all_verified = True
+    has_nko_evidence = False
 
     for char in text:
         entry = get_mapping_entry(char)
-        if entry.status == MappingStatus.VERIFIED and entry.target_unicode is not None:
-            converted_chars.append(entry.target_unicode)
-        else:
-            all_verified = False
+        if not entry.is_resolved:
             unresolved.append(f"U+{ord(char):04X}")
             converted_chars.append(char)
+            continue
+        converted_chars.append(entry.target_unicode)
+        if entry.status is MappingStatus.VERIFIED:
+            # Only native N'Ko or a recovered digit counts as evidence.
+            has_nko_evidence = True
 
-    # Check if there is any actual N'Ko content in the converted text
     final_text = "".join(converted_chars).strip()
-    has_nko = any(is_unicode_nko(ord(c)) for c in final_text)
+    is_verified = not unresolved and has_nko_evidence
 
-    # If all chars were verified AND we have valid characters
-    is_verified = all_verified and has_nko
-
-    status = (
-        MappingStatus.VERIFIED
-        if is_verified
-        else (MappingStatus.UNVERIFIED_PUA if unresolved else MappingStatus.UNKNOWN)
-    )
+    if is_verified:
+        status = MappingStatus.VERIFIED
+    elif unresolved:
+        status = MappingStatus.UNVERIFIED_PUA
+    else:
+        status = MappingStatus.UNKNOWN
 
     return ConversionResult(
         raw_text=text,

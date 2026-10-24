@@ -70,3 +70,20 @@ class EmptyTranslationError(TranslationError):
     code = "empty_translation"
     http_status = 502
     message = "The translation provider returned no usable text."
+
+
+class InvalidOutputEncodingError(TranslationError):
+    """The provider returned characters that cannot be valid N'Ko.
+
+    Raised instead of silently deleting the offending characters: removing them
+    would change the meaning of the text while still presenting it as a
+    successful translation.
+    """
+
+    code = "invalid_output_encoding"
+    http_status = 502
+    message = (
+        "The translation contained Private Use Area characters, which are not "
+        "valid Unicode N'Ko, so it was rejected rather than returned in a "
+        "corrupted form. Try again."
+    )
