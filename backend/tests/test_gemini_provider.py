@@ -95,7 +95,7 @@ def test_request_carries_model_system_prompt_and_contents():
     p = _provider(result=_Response(text="x"))
     p.complete("SYSTEM", "USER")
     kwargs = p._client.models.kwargs
-    assert kwargs["model"] == "gemini-2.5-pro"
+    assert kwargs["model"] == "gemini-3.8-flash"
     assert kwargs["contents"] == "USER"
     assert kwargs["config"].system_instruction == "SYSTEM"
 

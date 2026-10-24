@@ -34,7 +34,7 @@ class GeminiProvider(TranslationProvider):
         return bool(self._settings.gemini_api_key)
 
     def model_name(self) -> str:
-        return self._settings.gemini_model
+        return self._settings.gemini_model.strip()
 
     def _get_client(self):
         if self._client is not None:

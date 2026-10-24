@@ -32,7 +32,7 @@ class Settings(BaseSettings):
 
     # --- Google Gemini ------------------------------------------------------
     gemini_api_key: Optional[str] = Field(default=None, alias="GEMINI_API_KEY")
-    gemini_model: str = Field(default="gemini-2.5-pro", alias="GEMINI_MODEL")
+    gemini_model: str = Field(default="gemini-3.8-flash", alias="GEMINI_MODEL")
     gemini_max_tokens: int = Field(default=4096, alias="GEMINI_MAX_TOKENS")
     # Translation wants fidelity, not invention, so keep sampling low.
     gemini_temperature: float = Field(default=0.2, alias="GEMINI_TEMPERATURE")
