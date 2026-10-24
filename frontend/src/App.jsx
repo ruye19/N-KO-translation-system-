@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { translate, getHealth, ApiError } from './api.js'
 
-const LANGUAGES = { en: 'English', fr: 'Français', nko: 'N’Ko' }
+const LANGUAGES = { en: 'English', fr: 'Français', nko: 'N’Ko (Mandenka Kan)' }
 
 // The four directions version 1 supports. Kept in sync with the backend.
 const DIRECTIONS = [
@@ -125,9 +125,9 @@ export default function App() {
   return (
     <div className="page">
       <header className="header">
-        <h1>N{'’'}Ko Translator</h1>
+        <h1>N’Ko (Mandenka Kan) Translator</h1>
         <p className="tagline">
-          AI-assisted translation between English, French and N{'’'}Ko
+          AI-assisted translation between English, French and N’Ko (Mandenka Kan)
         </p>
       </header>
 
@@ -203,7 +203,7 @@ export default function App() {
               onKeyDown={onKeyDown}
               placeholder={
                 source === 'nko'
-                  ? 'Enter N’Ko text…'
+                  ? 'Enter N’Ko (Mandenka Kan) text…'
                   : 'Enter text to translate…'
               }
               spellCheck={source !== 'nko'}
@@ -281,8 +281,8 @@ export default function App() {
       <footer className="footer">
         <p>
           AI-assisted translation. Results are{' '}
-          <strong>not reviewed by a human N{'’'}Ko speaker</strong> and accuracy
-          is not guaranteed.
+          <strong>not reviewed by a human N’Ko (Mandenka Kan) speaker</strong> and accuracy
+          is not very much guaranteed.
         </p>
         {result?.model && (
           <p className="meta">
