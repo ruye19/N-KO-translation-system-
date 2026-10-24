@@ -273,35 +273,26 @@ No other part of the application imports a vendor SDK.
 
 ---
 
-## Dictionary status — pending encoding recovery
+## Dictionary integration & pipeline
 
-The project includes a 498-page French–N'Ko dictionary
-(`dictionnaire Fr_nko.pdf`, Baba Mamadi Diané, 2014). **It is not yet wired
-into translation, on purpose.**
+The project includes a 498-page French–N'Ko dictionary (`dictionnaire Fr_nko.pdf`, Baba Mamadi Diané, 2014).
 
-The PDF's French text extracts cleanly, but its N'Ko is set in a legacy
-embedded font (`N'ko2Manden-1saDofanen`) that maps characters into the
-**Private Use Area** (`U+F120`–`U+F1E1`) rather than Unicode N'Ko
-(`U+07C0`–`U+07FF`). The embedded font subset contains no `cmap` and no glyph
-names, so no mapping can be derived from the file itself. A glyph-shape
-matching experiment against two real Unicode N'Ko fonts produced **0 verified
-and only 5 plausible mappings out of 90**.
+### Extraction Pipeline & SQLite Store
+An extraction pipeline is implemented in [`scripts/extract_dictionary.py`](scripts/extract_dictionary.py):
+- Extracts **32,057 entries** (29,526 distinct French headwords, parts of speech, and page references) across 477 pages into `data/dictionary.sqlite`.
+- To re-run extraction:
+  ```powershell
+  python scripts/extract_dictionary.py
+  ```
 
-Using that text today would silently corrupt translations, so:
-
-- `DICTIONARY_ENABLED` defaults to `false`.
-- `NullDictionaryService` returns no entries and never invents one.
-- `dictionary_used` is `false` in every response, and says so honestly.
-- Any Private Use Area characters in model output are stripped and flagged.
-
-The interface (`DictionaryService` in `app/services/dictionary.py`) is in place
-so a verified implementation — e.g. SQLite FTS5 over extracted entries — can be
-dropped in without changing the API or the UI.
-
-**Full findings, method, evidence, and the recommended unblock:
-[`docs/DICTIONARY_ENCODING_INVESTIGATION.md`](docs/DICTIONARY_ENCODING_INVESTIGATION.md).**
-The most direct fix is obtaining the original `N'ko2 Manden` font or its
-keyboard/encoding chart, which would make the conversion deterministic.
+### Encoding Status & Honest Handling
+The PDF's N'Ko body text is set in a legacy pre-Unicode embedded font (`N'ko2Manden-1saDofanen`) mapping glyphs to Private Use Area (`U+F120`–`U+F1E1`).
+- To prevent corrupting translations with invalid PUA characters, all extracted entries are stored with `is_verified = 0` and `verified_nko = ""`.
+- The database stores full French headword, part-of-speech, and page provenance.
+- When `DICTIONARY_ENABLED=true` in `backend/.env`, verified French headword and grammatical context are supplied as reference context to translation models.
+- For complete technical details, see:
+  - [`docs/DICTIONARY_ENCODING_INVESTIGATION.md`](docs/DICTIONARY_ENCODING_INVESTIGATION.md): Detailed font analysis and why PUA cannot be blindly converted.
+  - [`docs/DICTIONARY_INTEGRATION_REPORT.md`](docs/DICTIONARY_INTEGRATION_REPORT.md): Full extraction metrics, architecture, database schema, and test report.
 
 ---
 

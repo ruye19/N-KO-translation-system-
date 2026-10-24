@@ -41,9 +41,9 @@ class Settings(BaseSettings):
     max_input_chars: int = Field(default=5000, alias="MAX_INPUT_CHARS")
 
     # --- Dictionary ---------------------------------------------------------
-    # Disabled by default. See docs/DICTIONARY_ENCODING_INVESTIGATION.md: the
-    # PDF's N'Ko is in a private-use-area encoding with no verified mapping to
-    # Unicode N'Ko, so the dictionary cannot yet be used as translation context.
+    # Disabled by default. When DICTIONARY_ENABLED=true and data/dictionary.sqlite
+    # exists, French headwords are retrieved as unverified reference context.
+    # N'Ko equivalents remain unverified pending legacy font encoding resolution.
     dictionary_enabled: bool = Field(default=False, alias="DICTIONARY_ENABLED")
     dictionary_db_path: Optional[str] = Field(default=None, alias="DICTIONARY_DB_PATH")
 

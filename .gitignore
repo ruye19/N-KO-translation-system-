@@ -17,9 +17,9 @@ node_modules/
 dist/
 .vite/
 
-# Dictionary working data (regenerate from the source PDF; do not redistribute)
-data/extracted/
-data/raw/
+# Dictionary working data (regenerate from the source PDF via scripts/extract_dictionary.py)
+data/*
+!data/.gitkeep
 
 # Editors / OS
 .vscode/
