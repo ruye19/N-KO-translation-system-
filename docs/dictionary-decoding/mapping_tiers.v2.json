@@ -1,0 +1,936 @@
+{
+ "version": "2.0.0",
+ "date": "2026-10-30",
+ "status": "No mapping in this file is human-verified. STRONG = several independent lines of evidence agree; CANDIDATE = not enough evidence; candidates must never be used as decoded output.",
+ "source_pdf": "docs/dictionnaire Fr_nko.pdf",
+ "source_pdf_sha256": "871628d99b9601cbdb9d797c54ffa81cad0f0ba1b4920de3aca64e3706be574b",
+ "derived_from": {
+  "file": "mapping_tiers.json",
+  "version": "1",
+  "sha256": "b089c80a09023111c8ceae3c48ae93a872d21db8dcc8d84f6c241afac157489e"
+ },
+ "key_format": "Keys are the codepoints as extracted from the PDF: legacy PUA font codes as U+F1xx (byte + 0xF100); U+05D0 and U+05DE are legacy font codes whose ToUnicode happens to be Hebrew; U+0660..U+0669 are digit codepoints carrying N'Ko digit glyphs.",
+ "counts": {
+  "font_codes": 91,
+  "digit_codepoints": 10,
+  "total_mapped_codes": 101,
+  "strong": 94,
+  "candidate": 7,
+  "strong_font_codes": 84,
+  "passthrough": 19,
+  "known_unresolved": 2
+ },
+ "corrections_from_v1": [
+  "C1: v1 called all 101 entries 'legacy codes'. They are 91 legacy font codes plus 10 digit codepoints (U+0660..U+0669).",
+  "C2: candidate occurrence counts now count the whole dictionary body (body_occurrences): U+F148 51, U+F156 1, U+F157 2, U+F159 1, U+F15F 100, U+F166 1, U+F177 141.",
+  "C3: U+061B and U+061F are unverified passthrough, not confirmed punctuation (the v1 report overstated this). Only U+060C's glyph matches the Arabic comma.",
+  "C4: keys now use the extracted codepoint (U+F142 instead of 0042) so font codes cannot be confused with ASCII.",
+  "Tiers and Unicode values are unchanged from v1."
+ ],
+ "codes": {
+  "U+F142": {
+   "legacy_byte": "42",
+   "kind": "font_code",
+   "unicode": "U+07CA",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape(final 0.81 both refs); 42≡05D0 identical outline; basmala 'Ala', alphabet 'a', Baba/Mamadi"
+  },
+  "U+F148": {
+   "legacy_byte": "48",
+   "kind": "font_code",
+   "unicode": "U+07DA",
+   "tier": "CANDIDATE",
+   "role": "letter",
+   "evidence": "shape: Ebrima top ߚ, refs disagree; 51 occurrences in the dictionary body, mostly ideophones",
+   "body_occurrences": 51
+  },
+  "U+F149": {
+   "legacy_byte": "49",
+   "kind": "font_code",
+   "unicode": "U+07CC",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape(final 0.72 both); alphabet 'i'; Mamadi, Jinɛ"
+  },
+  "U+F14A": {
+   "legacy_byte": "4A",
+   "kind": "font_code",
+   "unicode": "U+07CC",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape(final 0.72 both); alphabet 'i'; Mamadi, Jinɛ"
+  },
+  "U+F14B": {
+   "legacy_byte": "4B",
+   "kind": "font_code",
+   "unicode": "U+07D6",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "Kanjamadi crib; positional pair of 4C"
+  },
+  "U+F14C": {
+   "legacy_byte": "4C",
+   "kind": "font_code",
+   "unicode": "U+07D6",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.78/0.74; alphabet 'j','g'; 'z'=4C+dot"
+  },
+  "U+F14D": {
+   "legacy_byte": "4D",
+   "kind": "font_code",
+   "unicode": "U+07E0",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "woloso rule: follows nasal 94.3% (plain ߟ 4.7%)"
+  },
+  "U+F14F": {
+   "legacy_byte": "4F",
+   "kind": "font_code",
+   "unicode": "U+07E4",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.82/0.80 (51); alphabet 'h'; basmala hinla, hakili"
+  },
+  "U+F151": {
+   "legacy_byte": "51",
+   "kind": "font_code",
+   "unicode": "U+07E4",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.82/0.80 (51); alphabet 'h'; basmala hinla, hakili"
+  },
+  "U+F152": {
+   "legacy_byte": "52",
+   "kind": "font_code",
+   "unicode": "U+07E1",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape Δ 0.69/0.76 (54); alphabet 'm'; basmala, Mamadi"
+  },
+  "U+F154": {
+   "legacy_byte": "54",
+   "kind": "font_code",
+   "unicode": "U+07E1",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape Δ 0.69/0.76 (54); alphabet 'm'; basmala, Mamadi"
+  },
+  "U+F155": {
+   "legacy_byte": "55",
+   "kind": "font_code",
+   "unicode": "U+07E2",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "Noto shape top; dunya, nyɔɔn, nya cribs"
+  },
+  "U+F156": {
+   "legacy_byte": "56",
+   "kind": "font_code",
+   "unicode": "U+07E2",
+   "tier": "CANDIDATE",
+   "role": "letter",
+   "evidence": "shape ߢ/ߧ ambiguous; 1 (U+F156) and 2 (U+F157) occurrences in the dictionary body",
+   "body_occurrences": 1
+  },
+  "U+F157": {
+   "legacy_byte": "57",
+   "kind": "font_code",
+   "unicode": "U+07E2",
+   "tier": "CANDIDATE",
+   "role": "letter",
+   "evidence": "shape ߢ/ߧ ambiguous; 1 (U+F156) and 2 (U+F157) occurrences in the dictionary body",
+   "body_occurrences": 2
+  },
+  "U+F158": {
+   "legacy_byte": "58",
+   "kind": "font_code",
+   "unicode": "U+07D2",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape top both refs; ߒߞߏ 'N'Ko' crib"
+  },
+  "U+F159": {
+   "legacy_byte": "59",
+   "kind": "font_code",
+   "unicode": "U+07F3",
+   "tier": "CANDIDATE",
+   "role": "mark",
+   "evidence": "07F3: shape 0.70/0.80, but only 1 occurrence",
+   "body_occurrences": 1
+  },
+  "U+F15A": {
+   "legacy_byte": "5A",
+   "kind": "font_code",
+   "unicode": "U+07F4",
+   "tier": "STRONG",
+   "role": "tone_apostrophe",
+   "evidence": "shape ߴ 0.68/0.64 vs 0.33; elision after high-tone ni"
+  },
+  "U+F15F": {
+   "legacy_byte": "5F",
+   "kind": "font_code",
+   "unicode": "U+07FA",
+   "tier": "CANDIDATE",
+   "role": "lajanyalan",
+   "evidence": "shape ߺ 0.41/0.42 vs 0.29; used as elongation",
+   "body_occurrences": 100
+  },
+  "U+F160": {
+   "legacy_byte": "60",
+   "kind": "font_code",
+   "unicode": "U+07D8",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape top both; Kanjamadi, Mamadi, den, dunya"
+  },
+  "U+F161": {
+   "legacy_byte": "61",
+   "kind": "font_code",
+   "unicode": "U+07CE",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.64/0.80 (62); alphabet 'u'; dunya"
+  },
+  "U+F162": {
+   "legacy_byte": "62",
+   "kind": "font_code",
+   "unicode": "U+07CE",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.64/0.80 (62); alphabet 'u'; dunya"
+  },
+  "U+F163": {
+   "legacy_byte": "63",
+   "kind": "font_code",
+   "unicode": "U+07CF",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.65/0.67 (64); alphabet 'o'; ߒߞߏ, bolo"
+  },
+  "U+F164": {
+   "legacy_byte": "64",
+   "kind": "font_code",
+   "unicode": "U+07CF",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.65/0.67 (64); alphabet 'o'; ߒߞߏ, bolo"
+  },
+  "U+F165": {
+   "legacy_byte": "65",
+   "kind": "font_code",
+   "unicode": "U+07E7",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "woloso rule: follows nasal 97.6% (plain ߦ 12.7%); shape top Ebrima"
+  },
+  "U+F166": {
+   "legacy_byte": "66",
+   "kind": "font_code",
+   "unicode": "U+07E7",
+   "tier": "CANDIDATE",
+   "role": "letter",
+   "evidence": "shape ߧ (0.63/0.71) final; 1 occurrence",
+   "body_occurrences": 1
+  },
+  "U+F167": {
+   "legacy_byte": "67",
+   "kind": "font_code",
+   "unicode": "U+07D4",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "Nipɔn (Japan entries), Erɔpu (Europe); 68 final shape 0.74/0.86"
+  },
+  "U+F168": {
+   "legacy_byte": "68",
+   "kind": "font_code",
+   "unicode": "U+07D4",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "final forms; strong shape matches (0.74–0.86) + pair with confirmed medial"
+  },
+  "U+F169": {
+   "legacy_byte": "69",
+   "kind": "font_code",
+   "unicode": "U+07D3",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "bolo (vowel elision), Baba, ߓߊ 'mère'"
+  },
+  "U+F16A": {
+   "legacy_byte": "6A",
+   "kind": "font_code",
+   "unicode": "U+07DE",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "alphabet 'k'; Kanjamadi, N'Ko, kan, kelen"
+  },
+  "U+F16B": {
+   "legacy_byte": "6B",
+   "kind": "font_code",
+   "unicode": "U+07D7",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "6B≡6C identical; cɛ 'homme', -cɛ agent suffix; 6E shape 0.77/0.86"
+  },
+  "U+F16C": {
+   "legacy_byte": "6C",
+   "kind": "font_code",
+   "unicode": "U+07D7",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "6B≡6C identical; cɛ 'homme', -cɛ agent suffix; 6E shape 0.77/0.86"
+  },
+  "U+F16E": {
+   "legacy_byte": "6E",
+   "kind": "font_code",
+   "unicode": "U+07D7",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "final forms; strong shape matches (0.74–0.86) + pair with confirmed medial"
+  },
+  "U+F16F": {
+   "legacy_byte": "6F",
+   "kind": "font_code",
+   "unicode": "U+07D9",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "6F≡70 identical; Kaahira, Misira, Faransi; 71 shape 0.84"
+  },
+  "U+F170": {
+   "legacy_byte": "70",
+   "kind": "font_code",
+   "unicode": "U+07D9",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "6F≡70 identical; Kaahira, Misira, Faransi; 71 shape 0.84"
+  },
+  "U+F171": {
+   "legacy_byte": "71",
+   "kind": "font_code",
+   "unicode": "U+07D9",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "final forms; strong shape matches (0.74–0.86) + pair with confirmed medial"
+  },
+  "U+F172": {
+   "legacy_byte": "72",
+   "kind": "font_code",
+   "unicode": "U+07D9",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "final forms; strong shape matches (0.74–0.86) + pair with confirmed medial"
+  },
+  "U+F173": {
+   "legacy_byte": "73",
+   "kind": "font_code",
+   "unicode": "U+07E6",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "yiri 'arbre', ye; 75 alphabet 'y'"
+  },
+  "U+F174": {
+   "legacy_byte": "74",
+   "kind": "font_code",
+   "unicode": "U+07E6",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "yiri 'arbre', ye; 75 alphabet 'y'"
+  },
+  "U+F175": {
+   "legacy_byte": "75",
+   "kind": "font_code",
+   "unicode": "U+07E6",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "alphabet 'y'; shape top both"
+  },
+  "U+F177": {
+   "legacy_byte": "77",
+   "kind": "font_code",
+   "unicode": "U+07E5",
+   "tier": "CANDIDATE",
+   "role": "letter",
+   "evidence": "shape top both refs (0.51/0.42); medial pair of 78; few distinctive cribs",
+   "body_occurrences": 141
+  },
+  "U+F178": {
+   "legacy_byte": "78",
+   "kind": "font_code",
+   "unicode": "U+07E5",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "alphabet 'w'; 'wa, wali = taa, taali'; wuya 'mensonge'; NOTE trailing spacer"
+  },
+  "U+F179": {
+   "legacy_byte": "79",
+   "kind": "font_code",
+   "unicode": "U+07D5",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.69/0.72 (7A); tɔɔ 'nom', tele 'soleil', Batɛ"
+  },
+  "U+F17A": {
+   "legacy_byte": "7A",
+   "kind": "font_code",
+   "unicode": "U+07D5",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.69/0.72 (7A); tɔɔ 'nom', tele 'soleil', Batɛ"
+  },
+  "U+F17B": {
+   "legacy_byte": "7B",
+   "kind": "font_code",
+   "unicode": "U+07CB",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "Noto 0.70 (7C); den, tele, kelen, Erɔpu"
+  },
+  "U+F17C": {
+   "legacy_byte": "7C",
+   "kind": "font_code",
+   "unicode": "U+07CB",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "Noto 0.70 (7C); den, tele, kelen, Erɔpu"
+  },
+  "U+F17D": {
+   "legacy_byte": "7D",
+   "kind": "font_code",
+   "unicode": "U+07E3",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "basmala hinla/mahinla, nɔnɔ 'lait', Sinɛkaali"
+  },
+  "U+F17F": {
+   "legacy_byte": "7F",
+   "kind": "font_code",
+   "unicode": "U+07DD",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "Faransi, fila 'deux', Nfajika; E1 = alphabet 'f'"
+  },
+  "U+F1A1": {
+   "legacy_byte": "A1",
+   "kind": "font_code",
+   "unicode": "U+07DC",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape ▽ (A4 Noto 0.71); sigma = ߜ߭ (g); dùusàgbɛ"
+  },
+  "U+F1A2": {
+   "legacy_byte": "A2",
+   "kind": "font_code",
+   "unicode": "U+07DC",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape ▽ (A4 Noto 0.71); sigma = ߜ߭ (g); dùusàgbɛ"
+  },
+  "U+F1A3": {
+   "legacy_byte": "A3",
+   "kind": "font_code",
+   "unicode": "U+07DC",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape ▽ (A4 Noto 0.71); sigma = ߜ߭ (g); dùusàgbɛ"
+  },
+  "U+F1A4": {
+   "legacy_byte": "A4",
+   "kind": "font_code",
+   "unicode": "U+07DC",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape ▽ (A4 Noto 0.71); sigma = ߜ߭ (g); dùusàgbɛ"
+  },
+  "U+F1A5": {
+   "legacy_byte": "A5",
+   "kind": "font_code",
+   "unicode": "U+07DB",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "alphabet 's'; sɛbɛ, Misira, Solomana"
+  },
+  "U+F1A6": {
+   "legacy_byte": "A6",
+   "kind": "font_code",
+   "unicode": "U+07CD",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape Λ 0.78/0.74 margin 0.4; Janɛ, Jinɛ, cɛ"
+  },
+  "U+F1A7": {
+   "legacy_byte": "A7",
+   "kind": "font_code",
+   "unicode": "U+07CD",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape Λ 0.78/0.74 margin 0.4; Janɛ, Jinɛ, cɛ"
+  },
+  "U+F1A8": {
+   "legacy_byte": "A8",
+   "kind": "font_code",
+   "unicode": "U+07CD",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape Λ 0.78/0.74 margin 0.4; Janɛ, Jinɛ, cɛ"
+  },
+  "U+F1A9": {
+   "legacy_byte": "A9",
+   "kind": "font_code",
+   "unicode": "U+07DF",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "A9≡AA identical; basmala Ala/la, alphabet 'l', Solomana"
+  },
+  "U+F1AA": {
+   "legacy_byte": "AA",
+   "kind": "font_code",
+   "unicode": "U+07DF",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "A9≡AA identical; basmala Ala/la, alphabet 'l', Solomana"
+  },
+  "U+F1AB": {
+   "legacy_byte": "AB",
+   "kind": "font_code",
+   "unicode": "U+07CA",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape(final 0.81 both refs); 42≡05D0 identical outline; basmala 'Ala', alphabet 'a', Baba/Mamadi"
+  },
+  "U+F1AC": {
+   "legacy_byte": "AC",
+   "kind": "font_code",
+   "unicode": "U+07CA",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape(final 0.81 both refs); 42≡05D0 identical outline; basmala 'Ala', alphabet 'a', Baba/Mamadi"
+  },
+  "U+F1AE": {
+   "legacy_byte": "AE",
+   "kind": "font_code",
+   "unicode": "U+07D0",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.70/0.72 (AF/BA); tɔɔ, nɔnɔ, kɔnɔ"
+  },
+  "U+F1AF": {
+   "legacy_byte": "AF",
+   "kind": "font_code",
+   "unicode": "U+07D0",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.70/0.72 (AF/BA); tɔɔ, nɔnɔ, kɔnɔ"
+  },
+  "U+F1BA": {
+   "legacy_byte": "BA",
+   "kind": "font_code",
+   "unicode": "U+07D0",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.70/0.72 (AF/BA); tɔɔ, nɔnɔ, kɔnɔ"
+  },
+  "U+F1BB": {
+   "legacy_byte": "BB",
+   "kind": "font_code",
+   "unicode": "U+07F5",
+   "tier": "STRONG",
+   "role": "tone_apostrophe",
+   "evidence": "shape ߵ 0.76/0.69 vs 0.39; elision after low-tone kà"
+  },
+  "U+F1BC": {
+   "legacy_byte": "BC",
+   "kind": "font_code",
+   "unicode": "U+07F8",
+   "tier": "STRONG",
+   "role": "punctuation",
+   "evidence": "BC≡BD identical; shape ߸ 0.57/0.59 vs 0.11; clause separator"
+  },
+  "U+F1BD": {
+   "legacy_byte": "BD",
+   "kind": "font_code",
+   "unicode": "U+07F8",
+   "tier": "STRONG",
+   "role": "punctuation",
+   "evidence": "BC≡BD identical; shape ߸ 0.57/0.59 vs 0.11; clause separator"
+  },
+  "U+F1C0": {
+   "legacy_byte": "C0",
+   "kind": "font_code",
+   "unicode": "U+07D1",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "C0≡C1 identical; shape 0.54/0.52; Abdul, Baltika, bristol, sigma"
+  },
+  "U+F1C1": {
+   "legacy_byte": "C1",
+   "kind": "font_code",
+   "unicode": "U+07D1",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "C0≡C1 identical; shape 0.54/0.52; Abdul, Baltika, bristol, sigma"
+  },
+  "U+F1C4": {
+   "legacy_byte": "C4",
+   "kind": "font_code",
+   "unicode": "U+07EC",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "07EC: shape 0.82/0.77; 98.7% on vowels"
+  },
+  "U+F1C5": {
+   "legacy_byte": "C5",
+   "kind": "font_code",
+   "unicode": "U+07ED",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "07ED: shape 0.90/0.66; v=ߝ߭ z=ߖ߭ g=ߜ߭ in alphabet"
+  },
+  "U+F1C6": {
+   "legacy_byte": "C6",
+   "kind": "font_code",
+   "unicode": "U+07EB",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "07EB: shape 0.78/0.67; 100% on vowels"
+  },
+  "U+F1C7": {
+   "legacy_byte": "C7",
+   "kind": "font_code",
+   "unicode": "U+07F0",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "07F0: shape 0.80/0.73; 100% on vowels"
+  },
+  "U+F1C8": {
+   "legacy_byte": "C8",
+   "kind": "font_code",
+   "unicode": "U+07F1",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "07F1: shape 0.55/0.58 (thin margin); ߡߐ߱ 'personne', ߞߐ߱ 'sel'"
+  },
+  "U+F1C9": {
+   "legacy_byte": "C9",
+   "kind": "font_code",
+   "unicode": "U+07F2",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "07F2: only below-mark; shape 0.94/0.78; 99.9% on vowels"
+  },
+  "U+F1CA": {
+   "legacy_byte": "CA",
+   "kind": "font_code",
+   "unicode": "U+07EF",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "07EF: shape 0.55/0.58 (thin margin); Solomaana"
+  },
+  "U+F1CB": {
+   "legacy_byte": "CB",
+   "kind": "font_code",
+   "unicode": "U+07EE",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "07EE: shape 0.69/0.61; ߕߐ߮ 'nom'"
+  },
+  "U+F1CC": {
+   "legacy_byte": "CC",
+   "kind": "font_code",
+   "unicode": "U+07EC U+07F2",
+   "tier": "STRONG",
+   "role": "composite_mark",
+   "evidence": "=C4+C9 exact union"
+  },
+  "U+F1CD": {
+   "legacy_byte": "CD",
+   "kind": "font_code",
+   "unicode": "U+07ED U+07F2",
+   "tier": "STRONG",
+   "role": "composite_mark",
+   "evidence": "=C5+C9 exact union"
+  },
+  "U+F1D0": {
+   "legacy_byte": "D0",
+   "kind": "font_code",
+   "unicode": "U+07EF U+07F2",
+   "tier": "STRONG",
+   "role": "composite_mark",
+   "evidence": "=CA+C9 exact union"
+  },
+  "U+F1D1": {
+   "legacy_byte": "D1",
+   "kind": "font_code",
+   "unicode": "U+07EE U+07F2",
+   "tier": "STRONG",
+   "role": "composite_mark",
+   "evidence": "=CB+C9 exact union"
+  },
+  "U+F1D2": {
+   "legacy_byte": "D2",
+   "kind": "font_code",
+   "unicode": "U+07EC",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "=C4 identical"
+  },
+  "U+F1D3": {
+   "legacy_byte": "D3",
+   "kind": "font_code",
+   "unicode": "U+07ED",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "=C5 identical"
+  },
+  "U+F1D4": {
+   "legacy_byte": "D4",
+   "kind": "font_code",
+   "unicode": "U+07EB",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "=C6 bbox"
+  },
+  "U+F1D5": {
+   "legacy_byte": "D5",
+   "kind": "font_code",
+   "unicode": "U+07F0",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "=C7 identical"
+  },
+  "U+F1D7": {
+   "legacy_byte": "D7",
+   "kind": "font_code",
+   "unicode": "U+07F2",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "=C9 identical"
+  },
+  "U+F1D8": {
+   "legacy_byte": "D8",
+   "kind": "font_code",
+   "unicode": "U+07EF",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "=CA identical"
+  },
+  "U+F1D9": {
+   "legacy_byte": "D9",
+   "kind": "font_code",
+   "unicode": "U+07EE",
+   "tier": "STRONG",
+   "role": "mark",
+   "evidence": "=CB identical"
+  },
+  "U+F1DA": {
+   "legacy_byte": "DA",
+   "kind": "font_code",
+   "unicode": "U+07EC U+07F2",
+   "tier": "STRONG",
+   "role": "composite_mark",
+   "evidence": "=D2+D7 exact union"
+  },
+  "U+F1DB": {
+   "legacy_byte": "DB",
+   "kind": "font_code",
+   "unicode": "U+07ED U+07F2",
+   "tier": "STRONG",
+   "role": "composite_mark",
+   "evidence": "=D3+D7 exact union"
+  },
+  "U+F1E1": {
+   "legacy_byte": "E1",
+   "kind": "font_code",
+   "unicode": "U+07DD",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "alphabet 'f'; 'v' = E1+dot"
+  },
+  "U+05D0": {
+   "kind": "font_code",
+   "unicode": "U+07CA",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape(final 0.81 both refs); 42≡05D0 identical outline; basmala 'Ala', alphabet 'a', Baba/Mamadi"
+  },
+  "U+05DE": {
+   "kind": "font_code",
+   "unicode": "U+07E3",
+   "tier": "STRONG",
+   "role": "letter",
+   "evidence": "shape 0.79/0.82; alphabet 'n'"
+  },
+  "U+0660": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C0",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0661": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C1",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0662": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C2",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0663": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C3",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0664": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C4",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0665": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C5",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0666": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C6",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0667": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C7",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0668": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C8",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  },
+  "U+0669": {
+   "kind": "digit_codepoint",
+   "unicode": "U+07C9",
+   "tier": "STRONG",
+   "role": "digit",
+   "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+  }
+ },
+ "passthrough": {
+  "U+F120": {
+   "output": " ",
+   "role": "space",
+   "evidence": "Legacy-font space (zero-ink glyph, advance 341); word separator. Also used as the spacer under the tail of U+F178."
+  },
+  "U+0020": {
+   "output": " ",
+   "role": "space",
+   "evidence": "ASCII space"
+  },
+  "U+0021": {
+   "output": "!",
+   "role": "punctuation",
+   "evidence": "literal"
+  },
+  "U+0022": {
+   "output": "\"",
+   "role": "punctuation",
+   "evidence": "literal quotation mark"
+  },
+  "U+0028": {
+   "output": "(",
+   "role": "bracket",
+   "evidence": "literal; mirrored to ')' in logical order"
+  },
+  "U+0029": {
+   "output": ")",
+   "role": "bracket",
+   "evidence": "literal; mirrored to '(' in logical order"
+  },
+  "U+002B": {
+   "output": "+",
+   "role": "punctuation",
+   "evidence": "literal"
+  },
+  "U+002C": {
+   "output": ",",
+   "role": "punctuation",
+   "evidence": "literal (1 occurrence)"
+  },
+  "U+002E": {
+   "output": ".",
+   "role": "punctuation",
+   "evidence": "literal; also ends part-of-speech abbreviations"
+  },
+  "U+002F": {
+   "output": "/",
+   "role": "punctuation",
+   "evidence": "literal"
+  },
+  "U+003A": {
+   "output": ":",
+   "role": "punctuation",
+   "evidence": "literal"
+  },
+  "U+003D": {
+   "output": "=",
+   "role": "punctuation",
+   "evidence": "literal"
+  },
+  "U+005B": {
+   "output": "[",
+   "role": "bracket",
+   "evidence": "literal; mirrored to ']' in logical order"
+  },
+  "U+005D": {
+   "output": "]",
+   "role": "bracket",
+   "evidence": "literal; mirrored to '[' in logical order"
+  },
+  "U+060C": {
+   "output": "،",
+   "role": "punctuation",
+   "evidence": "ARABIC COMMA kept as-is. Glyph matches the Arabic comma (IoU 0.582) not the N'Ko comma U+07F8 (0.261); see backend/app/services/nko_mapping.py. Not N'Ko punctuation recovery."
+  },
+  "U+061B": {
+   "output": "؛",
+   "role": "punctuation",
+   "evidence": "UNVERIFIED passthrough. Kept as the ToUnicode value only. Its glyph does not cleanly match the Arabic semicolon and the ToUnicode value is not trustworthy (nko_mapping.py). NOT confirmed as N'Ko or Arabic punctuation."
+  },
+  "U+061F": {
+   "output": "؟",
+   "role": "punctuation",
+   "evidence": "UNVERIFIED passthrough. Kept as the ToUnicode value only. Its glyph does not cleanly match the Arabic question mark (nko_mapping.py). NOT confirmed as N'Ko punctuation."
+  },
+  "U+066A": {
+   "output": "٪",
+   "role": "punctuation",
+   "evidence": "Arabic percent sign; literal (1 occurrence)"
+  },
+  "U+2212": {
+   "output": "−",
+   "role": "punctuation",
+   "evidence": "MINUS SIGN used as a hyphen in the text; kept as-is"
+  }
+ },
+ "known_unresolved": {
+  "U+F146": "2 occurrences, both in MonotypeKoufi-font text in the dictionary body: p.252, headwords 'Km' and 'km2' (likely a unit symbol). No mapping; decoded output keeps it as a placeholder.",
+  "U+F14E": "1 occurrence, in MonotypeKoufi-font front matter (p.17); not in the dictionary body. No mapping."
+ }
+}

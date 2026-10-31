@@ -7,6 +7,8 @@ Select it with TRANSLATION_PROVIDER=gemini.
 """
 
 import logging
+import time
+from email.utils import parsedate_to_datetime
 
 from app.config import Settings
 from app.errors import (
@@ -22,6 +24,12 @@ from app.services.providers.base import ProviderResult, TranslationProvider
 
 logger = logging.getLogger(__name__)
 
+# Temporary failures worth one more attempt. 504 is left out on purpose: it
+# arrives only after the provider's own deadline, so a retry would double an
+# already long wait. Auth (401/403), bad request (400) and unknown model (404)
+# are permanent and never retried.
+RETRYABLE_STATUS_CODES = frozenset({429, 500, 502, 503})
+
 
 class GeminiProvider(TranslationProvider):
     name = "gemini"
@@ -29,6 +37,8 @@ class GeminiProvider(TranslationProvider):
     def __init__(self, settings: Settings):
         self._settings = settings
         self._client = None
+        self._sleep = time.sleep
+        self._clock = time.monotonic
 
     def is_configured(self) -> bool:
         return bool(self._settings.gemini_api_key)
@@ -92,6 +102,46 @@ class GeminiProvider(TranslationProvider):
         logger.warning("Gemini client error (status %s).", code)
         return ProviderUnavailableError()
 
+    def _call_with_retry(self, call):
+        """Run `call`, retrying at most once after a temporary failure."""
+        import httpx
+        from google.genai import errors
+
+        retries = min(max(self._settings.provider_max_retries, 0), 1)
+        for attempt in range(retries + 1):
+            started = self._clock()
+            try:
+                return call()
+            except (errors.APIError, httpx.ConnectError) as exc:
+                if attempt == retries:
+                    raise
+                delay = self._retry_delay(exc, self._clock() - started)
+                if delay is None:
+                    raise
+                logger.info(
+                    "Gemini temporary failure (%s); retrying once in %.1f s.",
+                    getattr(exc, "code", None) or type(exc).__name__,
+                    delay,
+                )
+                self._sleep(delay)
+
+    def _retry_delay(self, exc, elapsed: float) -> float | None:
+        """Seconds to wait before the retry, or None if it should not happen."""
+        s = self._settings
+        # A connection error means the request never reached Google, so a
+        # retry cannot cause a duplicate generation.
+        if getattr(exc, "code", None) not in RETRYABLE_STATUS_CODES and not _is_connect_error(exc):
+            return None
+        # A slow failure has already used much of the caller's time budget.
+        if elapsed > s.request_timeout_seconds / 2:
+            return None
+        requested = _requested_retry_delay(exc)
+        if requested is None:
+            return s.provider_retry_delay_seconds
+        if requested > s.provider_retry_max_delay_seconds:
+            return None
+        return max(requested, s.provider_retry_delay_seconds)
+
     def complete(self, system_prompt: str, user_prompt: str) -> ProviderResult:
         import httpx
         from google.genai import errors, types
@@ -109,10 +159,12 @@ class GeminiProvider(TranslationProvider):
         )
 
         try:
-            response = client.models.generate_content(
-                model=model,
-                contents=user_prompt,
-                config=config,
+            response = self._call_with_retry(
+                lambda: client.models.generate_content(
+                    model=model,
+                    contents=user_prompt,
+                    config=config,
+                )
             )
         except errors.ClientError as exc:
             raise self._map_client_error(exc) from exc
@@ -163,6 +215,44 @@ class GeminiProvider(TranslationProvider):
             raise EmptyTranslationError()
 
         return ProviderResult(text=text, model=model, warnings=warnings)
+
+
+def _is_connect_error(exc) -> bool:
+    import httpx
+
+    return isinstance(exc, httpx.ConnectError)
+
+
+def _parse_seconds(value) -> float | None:
+    """Parse a delay given as seconds ("2", "1.5s") or an HTTP date."""
+    text = str(value).strip().removesuffix("s")
+    try:
+        return max(float(text), 0.0)
+    except ValueError:
+        pass
+    try:
+        when = parsedate_to_datetime(str(value))
+    except (TypeError, ValueError):
+        return None
+    return max(when.timestamp() - time.time(), 0.0)
+
+
+def _requested_retry_delay(exc) -> float | None:
+    """The wait the provider asked for: a Retry-After header, or the
+    RetryInfo detail Google puts in a 429 body."""
+    headers = getattr(getattr(exc, "response", None), "headers", None)
+    if headers is not None:
+        value = headers.get("retry-after")
+        if value:
+            return _parse_seconds(value)
+    details = getattr(exc, "details", None)
+    if isinstance(details, dict):
+        error = details.get("error", details)
+        items = error.get("details") if isinstance(error, dict) else None
+        for item in items or []:
+            if isinstance(item, dict) and str(item.get("@type", "")).endswith("RetryInfo"):
+                return _parse_seconds(item.get("retryDelay", ""))
+    return None
 
 
 def looks_like_gemini_key(key: str | None) -> bool:

@@ -17,10 +17,19 @@ sys.path.insert(0, str(BACKEND_DIR))
 os.environ["ANTHROPIC_API_KEY"] = ""
 os.environ["GEMINI_API_KEY"] = ""
 os.environ["TRANSLATION_PROVIDER"] = "anthropic"
+# Access control stays on in the suite, with a throwaway key that the shared
+# clients send, so every existing test also runs behind the protection.
+TEST_ACCESS_KEY = "test-access-key-0123456789abcdef-not-real"
+os.environ["TRANSLATOR_API_KEY"] = TEST_ACCESS_KEY
+os.environ["REQUIRE_API_KEY"] = "true"
+os.environ["RATE_LIMIT_REQUESTS"] = "30"
+os.environ["RATE_LIMIT_WINDOW_SECONDS"] = "60"
+AUTH_HEADERS = {"Authorization": f"Bearer {TEST_ACCESS_KEY}"}
 
 from app.config import Settings  # noqa: E402
 from app.dependencies import get_translation_service  # noqa: E402
 from app.main import app  # noqa: E402
+from app.security import get_rate_limiter  # noqa: E402
 from app.services.providers.base import ProviderResult, TranslationProvider  # noqa: E402
 from app.services.translation import TranslationService  # noqa: E402
 
@@ -57,13 +66,21 @@ def build_service(provider) -> TranslationService:
     return service
 
 
+@pytest.fixture(autouse=True)
+def _fresh_rate_limit():
+    """Each test starts with an empty rate-limit window."""
+    get_rate_limiter().reset()
+    yield
+    get_rate_limiter().reset()
+
+
 @pytest.fixture
 def client():
     """TestClient with no dependency overrides (provider unconfigured)."""
     from fastapi.testclient import TestClient
 
     app.dependency_overrides.clear()
-    with TestClient(app) as c:
+    with TestClient(app, headers=AUTH_HEADERS) as c:
         yield c
     app.dependency_overrides.clear()
 
@@ -78,7 +95,7 @@ def client_with_provider():
     def _make(provider):
         service = build_service(provider)
         app.dependency_overrides[get_translation_service] = lambda: service
-        c = TestClient(app)
+        c = TestClient(app, headers=AUTH_HEADERS)
         created.append(c)
         return c
 

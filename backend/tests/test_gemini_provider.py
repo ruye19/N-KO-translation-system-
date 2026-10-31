@@ -1,5 +1,6 @@
 """Exercise GeminiProvider's mapping of SDK outcomes. No network calls."""
 
+# pyrefly: ignore[missing-import]
 import pytest
 from google.genai import errors
 

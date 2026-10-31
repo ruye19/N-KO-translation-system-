@@ -99,6 +99,17 @@ API usage is billed separately.
 Only the selected provider's key is needed. The backend warns at startup if a
 key does not match the expected format for the chosen provider.
 
+`POST /api/translate` requires an access key (`TRANSLATOR_API_KEY`, sent as
+`Authorization: Bearer <key>`). The bundled browser frontend cannot hold a
+secret, so for local development add this to `backend\.env`:
+
+```
+REQUIRE_API_KEY=false
+```
+
+Never set that in production. See
+[docs/API_INTEGRATION.md](docs/API_INTEGRATION.md#4-access-key).
+
 Start the server:
 
 ```powershell
@@ -151,6 +162,11 @@ All backend settings live in `backend/.env` (git-ignored). See
 | `MAX_INPUT_CHARS` | `5000` | Input length limit |
 | `DICTIONARY_ENABLED` | `false` | See *Dictionary status* below |
 | `CORS_ORIGINS` | `http://localhost:5173,…` | Origins allowed to call the API |
+| `TRANSLATOR_API_KEY` | *(none)* | Access key(s) for `/api/translate`, comma-separated. **Secret.** |
+| `REQUIRE_API_KEY` | `true` | `false` only for local development; with `true` and no key, translation is refused |
+| `RATE_LIMIT_REQUESTS` / `RATE_LIMIT_WINDOW_SECONDS` | `30` / `60` | Per client address, per worker process; `0` disables |
+| `PROVIDER_MAX_RETRIES` | `1` | One retry of a temporary Gemini failure; `0` disables |
+| `PROVIDER_RETRY_DELAY_SECONDS` / `PROVIDER_RETRY_MAX_DELAY_SECONDS` | `1.0` / `5.0` | Retry wait, and the longest provider-requested wait that is still honoured |
 
 ### Security
 
@@ -158,6 +174,10 @@ All backend settings live in `backend/.env` (git-ignored). See
   the browser, logged, or included in any API response or error message.
 - `.env` is git-ignored; `.env.example` contains no real values.
 - User-submitted text is not logged — only the direction and character count.
+- `/api/translate` requires `Authorization: Bearer <TRANSLATOR_API_KEY>`,
+  compared in constant time, and fails closed when no key is configured.
+- `/api/translate` is rate limited per client address (in memory; see the
+  integration guide for proxies and multiple workers).
 
 ---
 
@@ -182,7 +202,7 @@ Returns the four supported directions, so a client never offers an invalid pair.
 
 ### `POST /api/translate`
 
-Request:
+Request (header `Authorization: Bearer <TRANSLATOR_API_KEY>` required):
 
 ```json
 {
@@ -221,11 +241,16 @@ Errors always use the same shape:
 | Status | Code | Meaning |
 |---|---|---|
 | 400 | `empty_text`, `text_too_long`, `unsupported_language`, `unsupported_direction`, `same_language` | Invalid request |
+| 401 | `unauthorized` | Missing or invalid access key |
+| 404 / 405 | `not_found` / `method_not_allowed` | Wrong path or HTTP method |
+| 422 | `invalid_request` | Malformed body: missing field, wrong type or invalid JSON. The input is not echoed back. |
 | 422 | `provider_refused` | The provider declined the text |
-| 429 | `provider_rate_limited` | Provider rate limit |
+| 429 | `rate_limited` | This API's rate limit; see the `Retry-After` header |
+| 429 | `provider_rate_limited` | Provider rate limit (after one retry) |
 | 500 | `internal_error` | Unexpected server error |
 | 502 | `provider_auth_failed`, `provider_unavailable`, `empty_translation` | Provider problem |
 | 502 | `invalid_output_encoding` | Output contained Private Use Area characters and was rejected rather than silently stripped |
+| 503 | `access_not_configured` | No `TRANSLATOR_API_KEY` on the server |
 | 503 | `provider_not_configured` | No API key configured |
 | 504 | `provider_timeout` | Provider too slow |
 
@@ -236,19 +261,22 @@ PowerShell:
 ```powershell
 curl.exe -X POST http://localhost:8000/api/translate `
   -H "Content-Type: application/json" `
+  -H "Authorization: Bearer $env:TRANSLATOR_API_KEY" `
   -d '{\"source_language\":\"en\",\"target_language\":\"nko\",\"text\":\"How are you?\"}'
 ```
 
 Python:
 
 ```python
+import os
+
 import httpx
 
 r = httpx.post("http://localhost:8000/api/translate", json={
     "source_language": "fr",
     "target_language": "nko",
     "text": "Comment allez-vous ?",
-})
+}, headers={"Authorization": f"Bearer {os.environ['TRANSLATOR_API_KEY']}"}, timeout=75)
 print(r.json()["translation"])
 ```
 
@@ -343,9 +371,12 @@ network calls**, so they run without an API key.
 
 ## Deployment notes
 
-- Backend start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT`
+- Backend start command: `uvicorn app.main:app --host 0.0.0.0 --port $PORT --workers 1`
+  (behind a reverse proxy add `--proxy-headers --forwarded-allow-ips=<proxy IP>`)
+- Required server env var: `TRANSLATOR_API_KEY` (and leave `REQUIRE_API_KEY` unset or `true`)
 - Frontend build: `npm run build` → static files in `frontend/dist`
-- Required server env var: `ANTHROPIC_API_KEY`
+- Required server env var: the selected provider's key (`GEMINI_API_KEY` for
+  `TRANSLATION_PROVIDER=gemini`, `ANTHROPIC_API_KEY` for `anthropic`)
 - Set `CORS_ORIGINS` to the deployed frontend origin
 - Health check path: `/api/health`
 
@@ -356,7 +387,12 @@ The website only needs:
 - the endpoint `POST /api/translate`
 - the language codes `en`, `fr`, `nko`
 - the request/response shapes documented above
-- the deployed API origin added to `CORS_ORIGINS`
+- a server-to-server call from the website's backend, sending
+  `Authorization: Bearer <TRANSLATOR_API_KEY>` (the key never goes to the browser)
+
+See [docs/API_INTEGRATION.md](docs/API_INTEGRATION.md) for the full integration
+guide: the access key, rate limits, retry behaviour, fetch examples, the error
+table, and the provider status found in testing.
 
 The frontend in this repository is a working reference implementation and a
 testing interface; it does not need to be the final website UI.
@@ -367,5 +403,5 @@ testing interface; it does not need to be the final website UI.
   one is the next step before this is shown to real users.
 - English ↔ N'Ko has no dictionary support even once the dictionary is
   recovered, since the source is organised French → N'Ko.
-- No authentication or rate limiting on the API yet — add both before exposing
-  it publicly.
+- The rate limit is kept in memory per worker process; scaling to several
+  workers or instances needs a shared store (e.g. Redis) or a gateway limit.

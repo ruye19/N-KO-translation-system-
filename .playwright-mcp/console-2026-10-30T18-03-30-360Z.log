@@ -1,0 +1,9 @@
+[     198ms] TypeError: Failed to execute 'appendChild' on 'Node': parameter 1 is not of type 'Node'.
+    at http://127.0.0.1:8765/review_app.js:55:12
+    at Array.forEach (<anonymous>)
+    at h (http://127.0.0.1:8765/review_app.js:53:36)
+    at renderDetail (http://127.0.0.1:8765/review_app.js:210:24)
+    at go (http://127.0.0.1:8765/review_app.js:322:5)
+    at http://127.0.0.1:8765/review_app.js:415:3
+    at http://127.0.0.1:8765/review_app.js:416:3
+[     242ms] [ERROR] Failed to load resource: the server responded with a status of 404 (File not found) @ http://127.0.0.1:8765/favicon.ico:0

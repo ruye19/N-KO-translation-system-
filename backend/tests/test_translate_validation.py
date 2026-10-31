@@ -21,6 +21,36 @@ def test_missing_field_is_a_422(client_with_provider):
     c = client_with_provider(FakeProvider(result="x"))
     r = c.post("/api/translate", json={"source_language": "en"})
     assert r.status_code == 422
+    body = r.json()
+    assert body["error"]["code"] == "invalid_request"
+    assert "text: Field required" in body["error"]["message"]
+    assert "target_language: Field required" in body["error"]["message"]
+
+
+@pytest.mark.parametrize("content,kwargs,fragment", [
+    ("wrong type", {"json": {"source_language": "en", "target_language": "nko", "text": 123}},
+     "text: Input should be a valid string"),
+    ("bad json", {"content": b"{bad", "headers": {"Content-Type": "application/json"}},
+     "not valid JSON"),
+])
+def test_malformed_bodies_use_the_error_envelope_without_echoing_input(client_with_provider, content, kwargs, fragment):
+    c = client_with_provider(FakeProvider(result="x"))
+    r = c.post("/api/translate", **kwargs)
+    assert r.status_code == 422
+    assert set(r.json()) == {"error"}
+    assert r.json()["error"]["code"] == "invalid_request"
+    assert fragment in r.json()["error"]["message"]
+    assert "123" not in r.text and "{bad" not in r.text
+
+
+@pytest.mark.parametrize("method,path,status,code", [
+    ("get", "/api/translate", 405, "method_not_allowed"),
+    ("get", "/api/nothing-here", 404, "not_found"),
+])
+def test_routing_errors_use_the_error_envelope(client, method, path, status, code):
+    r = getattr(client, method)(path)
+    assert r.status_code == status
+    assert r.json()["error"]["code"] == code
 
 
 def test_text_too_long_rejected(client_with_provider):

@@ -1,0 +1,1637 @@
+- generic [ref=f1e2]:
+  - heading "N'Ko Encoding Verification Worksheet" [level=1] [ref=f1e3]
+  - paragraph [ref=f1e4]:
+    - text: Proof of concept — 15 entries from
+    - emphasis [ref=f1e5]: Dictionnaire Bilingue Français – N'Ko
+    - text: (Baba Mamadi Diané, 2014). Generated for human review.
+  - generic [ref=f1e6]:
+    - strong [ref=f1e7]: Nothing in this worksheet is verified.
+    - paragraph [ref=f1e8]:
+      - text: The dictionary's N'Ko is stored in a legacy font (
+      - code [ref=f1e9]: N'ko2Manden-1saDofanen
+      - text: ) whose characters land in the Unicode Private Use Area. The embedded font contains no
+      - code [ref=f1e10]: cmap
+      - text: and no glyph names, so the PDF does not record which letters these are.
+    - paragraph [ref=f1e11]:
+      - text: Every codepoint below is marked
+      - strong [ref=f1e12]: UNKNOWN
+      - text: except the space, which is established by three independent signals (no glyph outline, positive advance width, legacy byte
+      - code [ref=f1e13]: "0x20"
+      - text: ", 16.2% of all characters). Classifications such as “base glyph” or “combining mark” come from"
+      - strong [ref=f1e14]: font metrics only
+      - text: — they say what
+      - emphasis [ref=f1e15]: kind
+      - text: of character it is, never
+      - emphasis [ref=f1e16]: which
+      - text: character. No identity has been guessed from visual similarity.
+  - generic [ref=f1e17]:
+    - strong [ref=f1e18]: How to complete this worksheet
+    - list [ref=f1e19]:
+      - listitem [ref=f1e20]:
+        - text: For each entry, read the
+        - strong [ref=f1e21]: printed image
+        - text: — that is the authority, not the codepoints.
+      - listitem [ref=f1e22]: Type the N'Ko into the answer box using a standard Unicode N'Ko keyboard.
+      - listitem [ref=f1e23]: Transcribe exactly what is printed, including tone marks. Do not correct spelling or modernise.
+      - listitem [ref=f1e24]: If any part is unclear or illegible, say so in the notes and leave it out rather than guessing.
+      - listitem [ref=f1e25]:
+        - text: Save the page when done (
+        - code [ref=f1e26]: Ctrl + S
+        - text: ), or copy each answer into a plain text file numbered to match.
+    - paragraph [ref=f1e27]: A mapping will only be derived after the answers come back, and only where a transcription aligns unambiguously with its codepoint sequence. Anything ambiguous stays UNKNOWN, and every derived mapping must then be cross-validated against entries the reviewer has not seen.
+  - generic [ref=f1e28]:
+    - strong [ref=f1e29]: Coverage
+    - paragraph [ref=f1e30]:
+      - text: These 15 entries contain 60 distinct legacy codepoints, accounting for
+      - strong [ref=f1e31]: 99.8%
+      - text: of all N'Ko characters in the 32,057-entry dictionary.
+    - table [ref=f1e32]:
+      - rowgroup [ref=f1e33]:
+        - row [ref=f1e34]:
+          - columnheader "Codepoint" [ref=f1e35]
+          - columnheader "Class (from metrics)" [ref=f1e36]
+          - columnheader "Occurrences" [ref=f1e37]
+          - columnheader "Share" [ref=f1e38]
+          - columnheader "Identity" [ref=f1e39]
+      - rowgroup [ref=f1e40]:
+        - row [ref=f1e41]:
+          - cell "U+F120" [ref=f1e42]
+          - cell "space" [ref=f1e43]
+          - cell "98,469" [ref=f1e44]
+          - cell "16.22%" [ref=f1e45]
+          - cell "space (recovered)" [ref=f1e46]
+        - row [ref=f1e47]:
+          - cell "U+F1C9" [ref=f1e48]
+          - cell "combining mark" [ref=f1e49]
+          - cell "32,891" [ref=f1e50]
+          - cell "5.42%" [ref=f1e51]
+          - cell "UNKNOWN" [ref=f1e52]
+        - row [ref=f1e53]:
+          - cell "U+F16A" [ref=f1e54]
+          - cell "base glyph" [ref=f1e55]
+          - cell "29,370" [ref=f1e56]
+          - cell "4.84%" [ref=f1e57]
+          - cell "UNKNOWN" [ref=f1e58]
+        - row [ref=f1e59]:
+          - cell "U+F1C4" [ref=f1e60]
+          - cell "combining mark" [ref=f1e61]
+          - cell "27,906" [ref=f1e62]
+          - cell "4.60%" [ref=f1e63]
+          - cell "UNKNOWN" [ref=f1e64]
+        - row [ref=f1e65]:
+          - cell "U+F142" [ref=f1e66]
+          - cell "base glyph" [ref=f1e67]
+          - cell "26,492" [ref=f1e68]
+          - cell "4.36%" [ref=f1e69]
+          - cell "UNKNOWN" [ref=f1e70]
+        - row [ref=f1e71]:
+          - cell "U+F1D2" [ref=f1e72]
+          - cell "combining mark" [ref=f1e73]
+          - cell "22,886" [ref=f1e74]
+          - cell "3.77%" [ref=f1e75]
+          - cell "UNKNOWN" [ref=f1e76]
+        - row [ref=f1e77]:
+          - cell "U+F160" [ref=f1e78]
+          - cell "base glyph" [ref=f1e79]
+          - cell "21,659" [ref=f1e80]
+          - cell "3.57%" [ref=f1e81]
+          - cell "UNKNOWN" [ref=f1e82]
+        - row [ref=f1e83]:
+          - cell "U+F1AB" [ref=f1e84]
+          - cell "base glyph" [ref=f1e85]
+          - cell "17,980" [ref=f1e86]
+          - cell "2.96%" [ref=f1e87]
+          - cell "UNKNOWN" [ref=f1e88]
+        - row [ref=f1e89]:
+          - cell "U+F152" [ref=f1e90]
+          - cell "base glyph" [ref=f1e91]
+          - cell "16,611" [ref=f1e92]
+          - cell "2.74%" [ref=f1e93]
+          - cell "UNKNOWN" [ref=f1e94]
+        - row [ref=f1e95]:
+          - cell "U+F1AA" [ref=f1e96]
+          - cell "base glyph" [ref=f1e97]
+          - cell "16,513" [ref=f1e98]
+          - cell "2.72%" [ref=f1e99]
+          - cell "UNKNOWN" [ref=f1e100]
+        - row [ref=f1e101]:
+          - cell "U+F17A" [ref=f1e102]
+          - cell "base glyph" [ref=f1e103]
+          - cell "15,979" [ref=f1e104]
+          - cell "2.63%" [ref=f1e105]
+          - cell "UNKNOWN" [ref=f1e106]
+        - row [ref=f1e107]:
+          - cell "U+F149" [ref=f1e108]
+          - cell "base glyph" [ref=f1e109]
+          - cell "15,662" [ref=f1e110]
+          - cell "2.58%" [ref=f1e111]
+          - cell "UNKNOWN" [ref=f1e112]
+        - row [ref=f1e113]:
+          - cell "U+F169" [ref=f1e114]
+          - cell "base glyph" [ref=f1e115]
+          - cell "14,924" [ref=f1e116]
+          - cell "2.46%" [ref=f1e117]
+          - cell "UNKNOWN" [ref=f1e118]
+        - row [ref=f1e119]:
+          - cell "U+F1A5" [ref=f1e120]
+          - cell "base glyph" [ref=f1e121]
+          - cell "14,380" [ref=f1e122]
+          - cell "2.37%" [ref=f1e123]
+          - cell "UNKNOWN" [ref=f1e124]
+        - row [ref=f1e125]:
+          - cell "U+F1AE" [ref=f1e126]
+          - cell "base glyph" [ref=f1e127]
+          - cell "14,182" [ref=f1e128]
+          - cell "2.34%" [ref=f1e129]
+          - cell "UNKNOWN" [ref=f1e130]
+        - row [ref=f1e131]:
+          - cell "U+F1A6" [ref=f1e132]
+          - cell "base glyph" [ref=f1e133]
+          - cell "12,659" [ref=f1e134]
+          - cell "2.09%" [ref=f1e135]
+          - cell "UNKNOWN" [ref=f1e136]
+        - row [ref=f1e137]:
+          - cell "U+F161" [ref=f1e138]
+          - cell "base glyph" [ref=f1e139]
+          - cell "12,109" [ref=f1e140]
+          - cell "2.00%" [ref=f1e141]
+          - cell "UNKNOWN" [ref=f1e142]
+        - row [ref=f1e143]:
+          - cell "U+F1C6" [ref=f1e144]
+          - cell "combining mark" [ref=f1e145]
+          - cell "12,080" [ref=f1e146]
+          - cell "1.99%" [ref=f1e147]
+          - cell "UNKNOWN" [ref=f1e148]
+        - row [ref=f1e149]:
+          - cell "U+F1A9" [ref=f1e150]
+          - cell "base glyph" [ref=f1e151]
+          - cell "12,067" [ref=f1e152]
+          - cell "1.99%" [ref=f1e153]
+          - cell "UNKNOWN" [ref=f1e154]
+        - row [ref=f1e155]:
+          - cell "U+F179" [ref=f1e156]
+          - cell "base glyph" [ref=f1e157]
+          - cell "11,783" [ref=f1e158]
+          - cell "1.94%" [ref=f1e159]
+          - cell "UNKNOWN" [ref=f1e160]
+        - row [ref=f1e161]:
+          - cell "U+F17D" [ref=f1e162]
+          - cell "base glyph" [ref=f1e163]
+          - cell "11,135" [ref=f1e164]
+          - cell "1.83%" [ref=f1e165]
+          - cell "UNKNOWN" [ref=f1e166]
+        - row [ref=f1e167]:
+          - cell "U+F14A" [ref=f1e168]
+          - cell "base glyph" [ref=f1e169]
+          - cell "10,189" [ref=f1e170]
+          - cell "1.68%" [ref=f1e171]
+          - cell "UNKNOWN" [ref=f1e172]
+        - row [ref=f1e173]:
+          - cell "U+F163" [ref=f1e174]
+          - cell "base glyph" [ref=f1e175]
+          - cell "9,877" [ref=f1e176]
+          - cell "1.63%" [ref=f1e177]
+          - cell "UNKNOWN" [ref=f1e178]
+        - row [ref=f1e179]:
+          - cell "U+F17F" [ref=f1e180]
+          - cell "base glyph" [ref=f1e181]
+          - cell "9,608" [ref=f1e182]
+          - cell "1.58%" [ref=f1e183]
+          - cell "UNKNOWN" [ref=f1e184]
+        - row [ref=f1e185]:
+          - cell "U+F1AC" [ref=f1e186]
+          - cell "base glyph" [ref=f1e187]
+          - cell "8,998" [ref=f1e188]
+          - cell "1.48%" [ref=f1e189]
+          - cell "UNKNOWN" [ref=f1e190]
+        - row [ref=f1e191]:
+          - cell "U+F154" [ref=f1e192]
+          - cell "base glyph" [ref=f1e193]
+          - cell "7,883" [ref=f1e194]
+          - cell "1.30%" [ref=f1e195]
+          - cell "UNKNOWN" [ref=f1e196]
+        - row [ref=f1e197]:
+          - cell "U+F170" [ref=f1e198]
+          - cell "base glyph" [ref=f1e199]
+          - cell "7,096" [ref=f1e200]
+          - cell "1.17%" [ref=f1e201]
+          - cell "UNKNOWN" [ref=f1e202]
+        - row [ref=f1e203]:
+          - cell "U+F174" [ref=f1e204]
+          - cell "base glyph" [ref=f1e205]
+          - cell "7,082" [ref=f1e206]
+          - cell "1.17%" [ref=f1e207]
+          - cell "UNKNOWN" [ref=f1e208]
+        - row [ref=f1e209]:
+          - cell "U+F1A7" [ref=f1e210]
+          - cell "base glyph" [ref=f1e211]
+          - cell "7,073" [ref=f1e212]
+          - cell "1.17%" [ref=f1e213]
+          - cell "UNKNOWN" [ref=f1e214]
+        - row [ref=f1e215]:
+          - cell "U+F17B" [ref=f1e216]
+          - cell "base glyph" [ref=f1e217]
+          - cell "6,583" [ref=f1e218]
+          - cell "1.08%" [ref=f1e219]
+          - cell "UNKNOWN" [ref=f1e220]
+        - row [ref=f1e221]:
+          - cell "U+F1D7" [ref=f1e222]
+          - cell "combining mark" [ref=f1e223]
+          - cell "6,122" [ref=f1e224]
+          - cell "1.01%" [ref=f1e225]
+          - cell "UNKNOWN" [ref=f1e226]
+        - row [ref=f1e227]:
+          - cell "U+F14B" [ref=f1e228]
+          - cell "base glyph" [ref=f1e229]
+          - cell "5,960" [ref=f1e230]
+          - cell "0.98%" [ref=f1e231]
+          - cell "UNKNOWN" [ref=f1e232]
+        - row [ref=f1e233]:
+          - cell "U+F164" [ref=f1e234]
+          - cell "base glyph" [ref=f1e235]
+          - cell "5,702" [ref=f1e236]
+          - cell "0.94%" [ref=f1e237]
+          - cell "UNKNOWN" [ref=f1e238]
+        - row [ref=f1e239]:
+          - cell "U+F155" [ref=f1e240]
+          - cell "base glyph" [ref=f1e241]
+          - cell "5,342" [ref=f1e242]
+          - cell "0.88%" [ref=f1e243]
+          - cell "UNKNOWN" [ref=f1e244]
+        - row [ref=f1e245]:
+          - cell "U+F173" [ref=f1e246]
+          - cell "base glyph" [ref=f1e247]
+          - cell "4,608" [ref=f1e248]
+          - cell "0.76%" [ref=f1e249]
+          - cell "UNKNOWN" [ref=f1e250]
+        - row [ref=f1e251]:
+          - cell "U+F17C" [ref=f1e252]
+          - cell "base glyph" [ref=f1e253]
+          - cell "3,906" [ref=f1e254]
+          - cell "0.64%" [ref=f1e255]
+          - cell "UNKNOWN" [ref=f1e256]
+        - row [ref=f1e257]:
+          - cell "U+F1AF" [ref=f1e258]
+          - cell "base glyph" [ref=f1e259]
+          - cell "3,888" [ref=f1e260]
+          - cell "0.64%" [ref=f1e261]
+          - cell "UNKNOWN" [ref=f1e262]
+        - row [ref=f1e263]:
+          - cell "U+F1CA" [ref=f1e264]
+          - cell "combining mark" [ref=f1e265]
+          - cell "3,751" [ref=f1e266]
+          - cell "0.62%" [ref=f1e267]
+          - cell "UNKNOWN" [ref=f1e268]
+        - row [ref=f1e269]:
+          - cell "U+F162" [ref=f1e270]
+          - cell "base glyph" [ref=f1e271]
+          - cell "3,729" [ref=f1e272]
+          - cell "0.61%" [ref=f1e273]
+          - cell "UNKNOWN" [ref=f1e274]
+        - row [ref=f1e275]:
+          - cell "U+F178" [ref=f1e276]
+          - cell "base glyph" [ref=f1e277]
+          - cell "3,720" [ref=f1e278]
+          - cell "0.61%" [ref=f1e279]
+          - cell "UNKNOWN" [ref=f1e280]
+        - row [ref=f1e281]:
+          - cell "U+F1C7" [ref=f1e282]
+          - cell "combining mark" [ref=f1e283]
+          - cell "3,671" [ref=f1e284]
+          - cell "0.60%" [ref=f1e285]
+          - cell "UNKNOWN" [ref=f1e286]
+        - row [ref=f1e287]:
+          - cell "U+F1A1" [ref=f1e288]
+          - cell "base glyph" [ref=f1e289]
+          - cell "3,411" [ref=f1e290]
+          - cell "0.56%" [ref=f1e291]
+          - cell "UNKNOWN" [ref=f1e292]
+        - row [ref=f1e293]:
+          - cell "U+F14D" [ref=f1e294]
+          - cell "base glyph" [ref=f1e295]
+          - cell "2,997" [ref=f1e296]
+          - cell "0.49%" [ref=f1e297]
+          - cell "UNKNOWN" [ref=f1e298]
+        - row [ref=f1e299]:
+          - cell "U+F16F" [ref=f1e300]
+          - cell "base glyph" [ref=f1e301]
+          - cell "2,920" [ref=f1e302]
+          - cell "0.48%" [ref=f1e303]
+          - cell "UNKNOWN" [ref=f1e304]
+        - row [ref=f1e305]:
+          - cell "U+F1BA" [ref=f1e306]
+          - cell "base glyph" [ref=f1e307]
+          - cell "2,387" [ref=f1e308]
+          - cell "0.39%" [ref=f1e309]
+          - cell "UNKNOWN" [ref=f1e310]
+        - row [ref=f1e311]:
+          - cell "U+F1D9" [ref=f1e312]
+          - cell "combining mark" [ref=f1e313]
+          - cell "2,029" [ref=f1e314]
+          - cell "0.33%" [ref=f1e315]
+          - cell "UNKNOWN" [ref=f1e316]
+        - row [ref=f1e317]:
+          - cell "U+F1A2" [ref=f1e318]
+          - cell "base glyph" [ref=f1e319]
+          - cell "1,396" [ref=f1e320]
+          - cell "0.23%" [ref=f1e321]
+          - cell "UNKNOWN" [ref=f1e322]
+        - row [ref=f1e323]:
+          - cell "U+F1A8" [ref=f1e324]
+          - cell "base glyph" [ref=f1e325]
+          - cell "1,344" [ref=f1e326]
+          - cell "0.22%" [ref=f1e327]
+          - cell "UNKNOWN" [ref=f1e328]
+        - row [ref=f1e329]:
+          - cell "U+F1D5" [ref=f1e330]
+          - cell "combining mark" [ref=f1e331]
+          - cell "1,204" [ref=f1e332]
+          - cell "0.20%" [ref=f1e333]
+          - cell "UNKNOWN" [ref=f1e334]
+        - row [ref=f1e335]:
+          - cell "U+F158" [ref=f1e336]
+          - cell "base glyph" [ref=f1e337]
+          - cell "1,201" [ref=f1e338]
+          - cell "0.20%" [ref=f1e339]
+          - cell "UNKNOWN" [ref=f1e340]
+        - row [ref=f1e341]:
+          - cell "U+F1C5" [ref=f1e342]
+          - cell "combining mark" [ref=f1e343]
+          - cell "900" [ref=f1e344]
+          - cell "0.15%" [ref=f1e345]
+          - cell "UNKNOWN" [ref=f1e346]
+        - row [ref=f1e347]:
+          - cell "U+F16B" [ref=f1e348]
+          - cell "base glyph" [ref=f1e349]
+          - cell "680" [ref=f1e350]
+          - cell "0.11%" [ref=f1e351]
+          - cell "UNKNOWN" [ref=f1e352]
+        - row [ref=f1e353]:
+          - cell "U+F165" [ref=f1e354]
+          - cell "base glyph" [ref=f1e355]
+          - cell "647" [ref=f1e356]
+          - cell "0.11%" [ref=f1e357]
+          - cell "UNKNOWN" [ref=f1e358]
+        - row [ref=f1e359]:
+          - cell "U+F1CB" [ref=f1e360]
+          - cell "combining mark" [ref=f1e361]
+          - cell "500" [ref=f1e362]
+          - cell "0.08%" [ref=f1e363]
+          - cell "UNKNOWN" [ref=f1e364]
+        - row [ref=f1e365]:
+          - cell "U+F167" [ref=f1e366]
+          - cell "base glyph" [ref=f1e367]
+          - cell "497" [ref=f1e368]
+          - cell "0.08%" [ref=f1e369]
+          - cell "UNKNOWN" [ref=f1e370]
+        - row [ref=f1e371]:
+          - cell "U+F1D8" [ref=f1e372]
+          - cell "combining mark" [ref=f1e373]
+          - cell "403" [ref=f1e374]
+          - cell "0.07%" [ref=f1e375]
+          - cell "UNKNOWN" [ref=f1e376]
+        - row [ref=f1e377]:
+          - cell "U+F15A" [ref=f1e378]
+          - cell "base glyph" [ref=f1e379]
+          - cell "318" [ref=f1e380]
+          - cell "0.05%" [ref=f1e381]
+          - cell "UNKNOWN" [ref=f1e382]
+        - row [ref=f1e383]:
+          - cell "U+F1C8" [ref=f1e384]
+          - cell "combining mark" [ref=f1e385]
+          - cell "252" [ref=f1e386]
+          - cell "0.04%" [ref=f1e387]
+          - cell "UNKNOWN" [ref=f1e388]
+        - row [ref=f1e389]:
+          - cell "U+F15F" [ref=f1e390]
+          - cell "base glyph" [ref=f1e391]
+          - cell "100" [ref=f1e392]
+          - cell "0.02%" [ref=f1e393]
+          - cell "UNKNOWN" [ref=f1e394]
+        - row [ref=f1e395]:
+          - cell "U+F1BC" [ref=f1e396]
+          - cell "base glyph" [ref=f1e397]
+          - cell "89" [ref=f1e398]
+          - cell "0.01%" [ref=f1e399]
+          - cell "UNKNOWN" [ref=f1e400]
+  - generic [ref=f1e401]:
+    - heading "1 eau n.f. dictionary p.146 (left column)" [level=2] [ref=f1e402]:
+      - generic [ref=f1e403]: "1"
+      - text: eau
+      - generic [ref=f1e404]: n.f.
+      - generic [ref=f1e405]: dictionary p.146 (left column)
+    - generic [ref=f1e406]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e407]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for eau" [ref=f1e408]
+    - generic [ref=f1e409]: Legacy codepoints as stored in the PDF (29 characters, 20 UNKNOWN)
+    - generic [ref=f1e410]:
+      - generic "base glyph - identity UNKNOWN" [ref=f1e411]:
+        - text: U+F14A
+        - emphasis [ref=f1e412]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e413]:
+        - text: U+F14B
+        - emphasis [ref=f1e414]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e415]:
+        - text: U+F17A
+        - emphasis [ref=f1e416]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e417]:
+        - text: U+F14A
+        - emphasis [ref=f1e418]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e419]:
+        - text: U+F14B
+        - emphasis [ref=f1e420]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e421]:
+        - text: U+F1C9
+        - emphasis [ref=f1e422]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e423]:
+        - text: U+F161
+        - emphasis [ref=f1e424]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e425]':
+        - text: U+F120
+        - emphasis [ref=f1e426]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e427]:
+        - text: U+F178
+        - emphasis [ref=f1e428]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e429]:
+        - text: U+F142
+        - emphasis [ref=f1e430]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e431]:
+        - text: U+F17D
+        - emphasis [ref=f1e432]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e433]':
+        - text: U+F120
+        - emphasis [ref=f1e434]: space
+      - 'generic "Recovered: space" [ref=f1e435]':
+        - text: U+F120
+        - emphasis [ref=f1e436]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e437]:
+        - text: U+F1C5
+        - emphasis [ref=f1e438]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e439]:
+        - text: U+F1AF
+        - emphasis [ref=f1e440]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e441]:
+        - text: U+F16A
+        - emphasis [ref=f1e442]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e443]':
+        - text: U+F120
+        - emphasis [ref=f1e444]: space
+      - 'generic "Recovered: space" [ref=f1e445]':
+        - text: U+F120
+        - emphasis [ref=f1e446]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e447]:
+        - text: U+F1C9
+        - emphasis [ref=f1e448]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e449]:
+        - text: U+F17C
+        - emphasis [ref=f1e450]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e451]:
+        - text: U+F1A9
+        - emphasis [ref=f1e452]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e453]:
+        - text: U+F142
+        - emphasis [ref=f1e454]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e455]:
+        - text: U+F169
+        - emphasis [ref=f1e456]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e457]':
+        - text: U+F120
+        - emphasis [ref=f1e458]: space
+      - 'generic "Recovered: space" [ref=f1e459]':
+        - text: U+F120
+        - emphasis [ref=f1e460]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e461]:
+        - text: U+F1AB
+        - emphasis [ref=f1e462]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e463]:
+        - text: U+F169
+        - emphasis [ref=f1e464]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e465]':
+        - text: U+F120
+        - emphasis [ref=f1e466]: space
+      - 'generic "Recovered: space" [ref=f1e467]':
+        - text: U+F120
+        - emphasis [ref=f1e468]: space
+    - generic [ref=f1e469]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e470]
+    - generic [ref=f1e471]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e472]
+  - generic [ref=f1e473]:
+    - heading "2 maison n.f. dictionary p.266 (left column)" [level=2] [ref=f1e474]:
+      - generic [ref=f1e475]: "2"
+      - text: maison
+      - generic [ref=f1e476]: n.f.
+      - generic [ref=f1e477]: dictionary p.266 (left column)
+    - generic [ref=f1e478]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e479]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for maison" [ref=f1e480]
+    - generic [ref=f1e481]: Legacy codepoints as stored in the PDF (9 characters, 9 UNKNOWN)
+    - generic [ref=f1e482]:
+      - generic "combining mark - identity UNKNOWN" [ref=f1e483]:
+        - text: U+F1C9
+        - emphasis [ref=f1e484]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e485]:
+        - text: U+F164
+        - emphasis [ref=f1e486]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e487]:
+        - text: U+F169
+        - emphasis [ref=f1e488]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e489]:
+        - text: U+F17A
+        - emphasis [ref=f1e490]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e491]:
+        - text: U+F1C9
+        - emphasis [ref=f1e492]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e493]:
+        - text: U+F17C
+        - emphasis [ref=f1e494]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e495]:
+        - text: U+F160
+        - emphasis [ref=f1e496]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e497]:
+        - text: U+F163
+        - emphasis [ref=f1e498]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e499]:
+        - text: U+F1A5
+        - emphasis [ref=f1e500]: base glyph · UNKNOWN
+    - generic [ref=f1e501]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e502]
+    - generic [ref=f1e503]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e504]
+  - generic [ref=f1e505]:
+    - heading "3 manger v.t. dictionary p.268 (right column)" [level=2] [ref=f1e506]:
+      - generic [ref=f1e507]: "3"
+      - text: manger
+      - generic [ref=f1e508]: v.t.
+      - generic [ref=f1e509]: dictionary p.268 (right column)
+    - generic [ref=f1e510]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e511]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for manger" [ref=f1e512]
+    - generic [ref=f1e513]: Legacy codepoints as stored in the PDF (16 characters, 14 UNKNOWN)
+    - generic [ref=f1e514]:
+      - 'generic "Recovered: space" [ref=f1e515]':
+        - text: U+F120
+        - emphasis [ref=f1e516]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e517]:
+        - text: U+F1C9
+        - emphasis [ref=f1e518]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e519]:
+        - text: U+F14A
+        - emphasis [ref=f1e520]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e521]:
+        - text: U+F14D
+        - emphasis [ref=f1e522]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e523]:
+        - text: U+F1C9
+        - emphasis [ref=f1e524]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e525]:
+        - text: U+F161
+        - emphasis [ref=f1e526]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e527]':
+        - text: U+F120
+        - emphasis [ref=f1e528]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e529]:
+        - text: U+F178
+        - emphasis [ref=f1e530]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e531]:
+        - text: U+F160
+        - emphasis [ref=f1e532]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e533]:
+        - text: U+F17A
+        - emphasis [ref=f1e534]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e535]:
+        - text: U+F1C9
+        - emphasis [ref=f1e536]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e537]:
+        - text: U+F1AB
+        - emphasis [ref=f1e538]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e539]:
+        - text: U+F152
+        - emphasis [ref=f1e540]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e541]:
+        - text: U+F1C4
+        - emphasis [ref=f1e542]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e543]:
+        - text: U+F161
+        - emphasis [ref=f1e544]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e545]:
+        - text: U+F1A5
+        - emphasis [ref=f1e546]: base glyph · UNKNOWN
+    - generic [ref=f1e547]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e548]
+    - generic [ref=f1e549]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e550]
+  - generic [ref=f1e551]:
+    - heading "4 bonjour n.m. dictionary p.67 (right column)" [level=2] [ref=f1e552]:
+      - generic [ref=f1e553]: "4"
+      - text: bonjour
+      - generic [ref=f1e554]: n.m.
+      - generic [ref=f1e555]: dictionary p.67 (right column)
+    - generic [ref=f1e556]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e557]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for bonjour" [ref=f1e558]
+    - generic [ref=f1e559]: Legacy codepoints as stored in the PDF (22 characters, 20 UNKNOWN)
+    - generic [ref=f1e560]:
+      - generic "base glyph - identity UNKNOWN" [ref=f1e561]:
+        - text: U+F14A
+        - emphasis [ref=f1e562]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e563]:
+        - text: U+F1C6
+        - emphasis [ref=f1e564]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e565]:
+        - text: U+F14A
+        - emphasis [ref=f1e566]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e567]:
+        - text: U+F17D
+        - emphasis [ref=f1e568]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e569]':
+        - text: U+F120
+        - emphasis [ref=f1e570]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e571]:
+        - text: U+F1C4
+        - emphasis [ref=f1e572]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e573]:
+        - text: U+F1AB
+        - emphasis [ref=f1e574]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e575]:
+        - text: U+F152
+        - emphasis [ref=f1e576]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e577]:
+        - text: U+F1C7
+        - emphasis [ref=f1e578]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e579]:
+        - text: U+F1AE
+        - emphasis [ref=f1e580]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e581]:
+        - text: U+F1A5
+        - emphasis [ref=f1e582]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e583]':
+        - text: U+F120
+        - emphasis [ref=f1e584]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e585]:
+        - text: U+F178
+        - emphasis [ref=f1e586]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e587]:
+        - text: U+F17F
+        - emphasis [ref=f1e588]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e589]:
+        - text: U+F14A
+        - emphasis [ref=f1e590]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e591]:
+        - text: U+F1C6
+        - emphasis [ref=f1e592]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e593]:
+        - text: U+F14A
+        - emphasis [ref=f1e594]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e595]:
+        - text: U+F17D
+        - emphasis [ref=f1e596]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e597]:
+        - text: U+F1C4
+        - emphasis [ref=f1e598]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e599]:
+        - text: U+F17C
+        - emphasis [ref=f1e600]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e601]:
+        - text: U+F1AA
+        - emphasis [ref=f1e602]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e603]:
+        - text: U+F179
+        - emphasis [ref=f1e604]: base glyph · UNKNOWN
+    - generic [ref=f1e605]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e606]
+    - generic [ref=f1e607]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e608]
+  - generic [ref=f1e609]:
+    - heading "5 taiji n.m. dictionary p.447 (left column)" [level=2] [ref=f1e610]:
+      - generic [ref=f1e611]: "5"
+      - text: taiji
+      - generic [ref=f1e612]: n.m.
+      - generic [ref=f1e613]: dictionary p.447 (left column)
+    - generic [ref=f1e614]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e615]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for taiji" [ref=f1e616]
+    - generic [ref=f1e617]: Legacy codepoints as stored in the PDF (30 characters, 27 UNKNOWN)
+    - generic [ref=f1e618]:
+      - generic "combining mark - identity UNKNOWN" [ref=f1e619]:
+        - text: U+F1C6
+        - emphasis [ref=f1e620]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e621]:
+        - text: U+F1A7
+        - emphasis [ref=f1e622]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e623]:
+        - text: U+F169
+        - emphasis [ref=f1e624]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e625]:
+        - text: U+F1D2
+        - emphasis [ref=f1e626]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e627]:
+        - text: U+F142
+        - emphasis [ref=f1e628]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e629]:
+        - text: U+F14D
+        - emphasis [ref=f1e630]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e631]:
+        - text: U+F1C9
+        - emphasis [ref=f1e632]: combining mark · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e633]:
+        - text: U+F1D2
+        - emphasis [ref=f1e634]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e635]:
+        - text: U+F17B
+        - emphasis [ref=f1e636]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e637]:
+        - text: U+F1A5
+        - emphasis [ref=f1e638]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e639]:
+        - text: U+F17A
+        - emphasis [ref=f1e640]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e641]':
+        - text: U+F120
+        - emphasis [ref=f1e642]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e643]:
+        - text: U+F1AB
+        - emphasis [ref=f1e644]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e645]:
+        - text: U+F173
+        - emphasis [ref=f1e646]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e647]:
+        - text: U+F1CA
+        - emphasis [ref=f1e648]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e649]:
+        - text: U+F142
+        - emphasis [ref=f1e650]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e651]:
+        - text: U+F169
+        - emphasis [ref=f1e652]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e653]:
+        - text: U+F1A6
+        - emphasis [ref=f1e654]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e655]:
+        - text: U+F169
+        - emphasis [ref=f1e656]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e657]':
+        - text: U+F120
+        - emphasis [ref=f1e658]: space
+      - 'generic "Recovered: space" [ref=f1e659]':
+        - text: U+F120
+        - emphasis [ref=f1e660]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e661]:
+        - text: U+F1C6
+        - emphasis [ref=f1e662]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e663]:
+        - text: U+F1A7
+        - emphasis [ref=f1e664]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e665]:
+        - text: U+F169
+        - emphasis [ref=f1e666]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e667]:
+        - text: U+F1D2
+        - emphasis [ref=f1e668]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e669]:
+        - text: U+F142
+        - emphasis [ref=f1e670]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e671]:
+        - text: U+F17D
+        - emphasis [ref=f1e672]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e673]:
+        - text: U+F1C4
+        - emphasis [ref=f1e674]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e675]:
+        - text: U+F149
+        - emphasis [ref=f1e676]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e677]:
+        - text: U+F1A5
+        - emphasis [ref=f1e678]: base glyph · UNKNOWN
+    - generic [ref=f1e679]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e680]
+    - generic [ref=f1e681]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e682]
+  - generic [ref=f1e683]:
+    - heading "6 radioactive, ive adj. dictionary p.368 (right column)" [level=2] [ref=f1e684]:
+      - generic [ref=f1e685]: "6"
+      - text: radioactive, ive
+      - generic [ref=f1e686]: adj.
+      - generic [ref=f1e687]: dictionary p.368 (right column)
+    - generic [ref=f1e688]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e689]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for radioactive, ive" [ref=f1e690]
+    - generic [ref=f1e691]: Legacy codepoints as stored in the PDF (15 characters, 12 UNKNOWN)
+    - generic [ref=f1e692]:
+      - 'generic "Recovered: space" [ref=f1e693]':
+        - text: U+F120
+        - emphasis [ref=f1e694]: space
+      - 'generic "Recovered: space" [ref=f1e695]':
+        - text: U+F120
+        - emphasis [ref=f1e696]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e697]:
+        - text: U+F162
+        - emphasis [ref=f1e698]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e699]:
+        - text: U+F179
+        - emphasis [ref=f1e700]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e701]:
+        - text: U+F161
+        - emphasis [ref=f1e702]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e703]:
+        - text: U+F179
+        - emphasis [ref=f1e704]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e705]:
+        - text: U+F161
+        - emphasis [ref=f1e706]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e707]:
+        - text: U+F170
+        - emphasis [ref=f1e708]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e709]:
+        - text: U+F16A
+        - emphasis [ref=f1e710]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e711]:
+        - text: U+F1D7
+        - emphasis [ref=f1e712]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e713]:
+        - text: U+F142
+        - emphasis [ref=f1e714]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e715]:
+        - text: U+F174
+        - emphasis [ref=f1e716]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e717]:
+        - text: U+F161
+        - emphasis [ref=f1e718]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e719]':
+        - text: U+F120
+        - emphasis [ref=f1e720]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e721]:
+        - text: U+F178
+        - emphasis [ref=f1e722]: base glyph · UNKNOWN
+    - generic [ref=f1e723]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e724]
+    - generic [ref=f1e725]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e726]
+  - generic [ref=f1e727]:
+    - heading "7 patron, onne n. dictionary p.316 (left column)" [level=2] [ref=f1e728]:
+      - generic [ref=f1e729]: "7"
+      - text: patron, onne
+      - generic [ref=f1e730]: n.
+      - generic [ref=f1e731]: dictionary p.316 (left column)
+    - generic [ref=f1e732]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e733]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for patron, onne" [ref=f1e734]
+    - generic [ref=f1e735]: Legacy codepoints as stored in the PDF (23 characters, 19 UNKNOWN)
+    - generic [ref=f1e736]:
+      - generic "base glyph - identity UNKNOWN" [ref=f1e737]:
+        - text: U+F1AB
+        - emphasis [ref=f1e738]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e739]:
+        - text: U+F17F
+        - emphasis [ref=f1e740]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e741]:
+        - text: U+F16F
+        - emphasis [ref=f1e742]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e743]:
+        - text: U+F1CA
+        - emphasis [ref=f1e744]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e745]:
+        - text: U+F142
+        - emphasis [ref=f1e746]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e747]:
+        - text: U+F169
+        - emphasis [ref=f1e748]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e749]:
+        - text: U+F154
+        - emphasis [ref=f1e750]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e751]':
+        - text: U+F120
+        - emphasis [ref=f1e752]: space
+      - 'generic "Recovered: space" [ref=f1e753]':
+        - text: U+F120
+        - emphasis [ref=f1e754]: space
+      - 'generic "Recovered: space" [ref=f1e755]':
+        - text: U+F120
+        - emphasis [ref=f1e756]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e757]:
+        - text: U+F1CB
+        - emphasis [ref=f1e758]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e759]:
+        - text: U+F14A
+        - emphasis [ref=f1e760]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e761]:
+        - text: U+F179
+        - emphasis [ref=f1e762]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e763]:
+        - text: U+F17B
+        - emphasis [ref=f1e764]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e765]:
+        - text: U+F16B
+        - emphasis [ref=f1e766]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e767]':
+        - text: U+F120
+        - emphasis [ref=f1e768]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e769]:
+        - text: U+F1AB
+        - emphasis [ref=f1e770]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e771]:
+        - text: U+F179
+        - emphasis [ref=f1e772]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e773]:
+        - text: U+F1D2
+        - emphasis [ref=f1e774]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e775]:
+        - text: U+F142
+        - emphasis [ref=f1e776]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e777]:
+        - text: U+F155
+        - emphasis [ref=f1e778]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e779]:
+        - text: U+F17B
+        - emphasis [ref=f1e780]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e781]:
+        - text: U+F16B
+        - emphasis [ref=f1e782]: base glyph · UNKNOWN
+    - generic [ref=f1e783]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e784]
+    - generic [ref=f1e785]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e786]
+  - generic [ref=f1e787]:
+    - heading "8 téflon n.m. dictionary p.452 (left column)" [level=2] [ref=f1e788]:
+      - generic [ref=f1e789]: "8"
+      - text: téflon
+      - generic [ref=f1e790]: n.m.
+      - generic [ref=f1e791]: dictionary p.452 (left column)
+    - generic [ref=f1e792]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e793]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for téflon" [ref=f1e794]
+    - generic [ref=f1e795]: Legacy codepoints as stored in the PDF (31 characters, 24 UNKNOWN)
+    - generic [ref=f1e796]:
+      - generic "base glyph - identity UNKNOWN" [ref=f1e797]:
+        - text: U+F164
+        - emphasis [ref=f1e798]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e799]:
+        - text: U+F1A2
+        - emphasis [ref=f1e800]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e801]:
+        - text: U+F1C4
+        - emphasis [ref=f1e802]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e803]:
+        - text: U+F1A6
+        - emphasis [ref=f1e804]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e805]:
+        - text: U+F155
+        - emphasis [ref=f1e806]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e807]:
+        - text: U+F1C4
+        - emphasis [ref=f1e808]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e809]:
+        - text: U+F1A6
+        - emphasis [ref=f1e810]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e811]:
+        - text: U+F155
+        - emphasis [ref=f1e812]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e813]:
+        - text: U+F17A
+        - emphasis [ref=f1e814]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e815]':
+        - text: U+F120
+        - emphasis [ref=f1e816]: space
+      - 'generic "Recovered: space" [ref=f1e817]':
+        - text: U+F120
+        - emphasis [ref=f1e818]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e819]:
+        - text: U+F1C9
+        - emphasis [ref=f1e820]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e821]:
+        - text: U+F1A7
+        - emphasis [ref=f1e822]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e823]:
+        - text: U+F152
+        - emphasis [ref=f1e824]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e825]':
+        - text: U+F120
+        - emphasis [ref=f1e826]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e827]:
+        - text: U+F1C4
+        - emphasis [ref=f1e828]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e829]:
+        - text: U+F17C
+        - emphasis [ref=f1e830]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e831]:
+        - text: U+F1A9
+        - emphasis [ref=f1e832]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e833]':
+        - text: U+F120
+        - emphasis [ref=f1e834]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e835]:
+        - text: U+F1C6
+        - emphasis [ref=f1e836]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e837]:
+        - text: U+F164
+        - emphasis [ref=f1e838]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e839]:
+        - text: U+F160
+        - emphasis [ref=f1e840]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e841]':
+        - text: U+F120
+        - emphasis [ref=f1e842]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e843]:
+        - text: U+F1D9
+        - emphasis [ref=f1e844]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e845]:
+        - text: U+F162
+        - emphasis [ref=f1e846]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e847]:
+        - text: U+F1A5
+        - emphasis [ref=f1e848]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e849]':
+        - text: U+F120
+        - emphasis [ref=f1e850]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e851]:
+        - text: U+F1AB
+        - emphasis [ref=f1e852]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e853]:
+        - text: U+F17D
+        - emphasis [ref=f1e854]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e855]:
+        - text: U+F152
+        - emphasis [ref=f1e856]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e857]':
+        - text: U+F120
+        - emphasis [ref=f1e858]: space
+    - generic [ref=f1e859]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e860]
+    - generic [ref=f1e861]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e862]
+  - generic [ref=f1e863]:
+    - heading "9 froid,e adj. dictionary p.195 (left column)" [level=2] [ref=f1e864]:
+      - generic [ref=f1e865]: "9"
+      - text: froid,e
+      - generic [ref=f1e866]: adj.
+      - generic [ref=f1e867]: dictionary p.195 (left column)
+    - generic [ref=f1e868]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e869]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for froid,e" [ref=f1e870]
+    - generic [ref=f1e871]: Legacy codepoints as stored in the PDF (25 characters, 22 UNKNOWN)
+    - generic [ref=f1e872]:
+      - generic "base glyph - identity UNKNOWN" [ref=f1e873]:
+        - text: U+F14A
+        - emphasis [ref=f1e874]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e875]:
+        - text: U+F1AA
+        - emphasis [ref=f1e876]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e877]:
+        - text: U+F149
+        - emphasis [ref=f1e878]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e879]:
+        - text: U+F1AA
+        - emphasis [ref=f1e880]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e881]:
+        - text: U+F1A1
+        - emphasis [ref=f1e882]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e883]:
+        - text: U+F154
+        - emphasis [ref=f1e884]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e885]':
+        - text: U+F120
+        - emphasis [ref=f1e886]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e887]:
+        - text: U+F1AC
+        - emphasis [ref=f1e888]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e889]:
+        - text: U+F1AA
+        - emphasis [ref=f1e890]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e891]:
+        - text: U+F1C4
+        - emphasis [ref=f1e892]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e893]:
+        - text: U+F1AE
+        - emphasis [ref=f1e894]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e895]:
+        - text: U+F160
+        - emphasis [ref=f1e896]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e897]:
+        - text: U+F16A
+        - emphasis [ref=f1e898]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e899]:
+        - text: U+F1D2
+        - emphasis [ref=f1e900]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e901]:
+        - text: U+F17B
+        - emphasis [ref=f1e902]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e903]:
+        - text: U+F1A5
+        - emphasis [ref=f1e904]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e905]':
+        - text: U+F120
+        - emphasis [ref=f1e906]: space
+      - 'generic "Recovered: space" [ref=f1e907]':
+        - text: U+F120
+        - emphasis [ref=f1e908]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e909]:
+        - text: U+F1C9
+        - emphasis [ref=f1e910]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e911]:
+        - text: U+F1A7
+        - emphasis [ref=f1e912]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e913]:
+        - text: U+F17D
+        - emphasis [ref=f1e914]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e915]:
+        - text: U+F142
+        - emphasis [ref=f1e916]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e917]:
+        - text: U+F152
+        - emphasis [ref=f1e918]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e919]:
+        - text: U+F161
+        - emphasis [ref=f1e920]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e921]:
+        - text: U+F1A5
+        - emphasis [ref=f1e922]: base glyph · UNKNOWN
+    - generic [ref=f1e923]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e924]
+    - generic [ref=f1e925]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e926]
+  - generic [ref=f1e927]:
+    - heading "10 prénom n.m. dictionary p.349 (left column)" [level=2] [ref=f1e928]:
+      - generic [ref=f1e929]: "10"
+      - text: prénom
+      - generic [ref=f1e930]: n.m.
+      - generic [ref=f1e931]: dictionary p.349 (left column)
+    - generic [ref=f1e932]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e933]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for prénom" [ref=f1e934]
+    - generic [ref=f1e935]: Legacy codepoints as stored in the PDF (33 characters, 26 UNKNOWN)
+    - generic [ref=f1e936]:
+      - generic "base glyph - identity UNKNOWN" [ref=f1e937]:
+        - text: U+F14A
+        - emphasis [ref=f1e938]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e939]:
+        - text: U+F15F
+        - emphasis [ref=f1e940]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e941]:
+        - text: U+F1A5
+        - emphasis [ref=f1e942]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e943]:
+        - text: U+F17A
+        - emphasis [ref=f1e944]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e945]:
+        - text: U+F1AE
+        - emphasis [ref=f1e946]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e947]:
+        - text: U+F17F
+        - emphasis [ref=f1e948]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e949]':
+        - text: U+F120
+        - emphasis [ref=f1e950]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e951]:
+        - text: U+F1C9
+        - emphasis [ref=f1e952]: combining mark · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e953]:
+        - text: U+F1C4
+        - emphasis [ref=f1e954]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e955]:
+        - text: U+F17C
+        - emphasis [ref=f1e956]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e957]:
+        - text: U+F160
+        - emphasis [ref=f1e958]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e959]:
+        - text: U+F1C9
+        - emphasis [ref=f1e960]: combining mark · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e961]:
+        - text: U+F1D2
+        - emphasis [ref=f1e962]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e963]:
+        - text: U+F142
+        - emphasis [ref=f1e964]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e965]:
+        - text: U+F152
+        - emphasis [ref=f1e966]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e967]':
+        - text: U+F120
+        - emphasis [ref=f1e968]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e969]:
+        - text: U+F1C4
+        - emphasis [ref=f1e970]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e971]:
+        - text: U+F1AC
+        - emphasis [ref=f1e972]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e973]':
+        - text: U+F120
+        - emphasis [ref=f1e974]: space
+      - 'generic "Recovered: space" [ref=f1e975]':
+        - text: U+F120
+        - emphasis [ref=f1e976]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e977]:
+        - text: U+F1D8
+        - emphasis [ref=f1e978]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e979]:
+        - text: U+F1A7
+        - emphasis [ref=f1e980]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e981]:
+        - text: U+F169
+        - emphasis [ref=f1e982]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e983]':
+        - text: U+F120
+        - emphasis [ref=f1e984]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e985]:
+        - text: U+F1BC
+        - emphasis [ref=f1e986]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e987]':
+        - text: U+F120
+        - emphasis [ref=f1e988]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e989]:
+        - text: U+F1C6
+        - emphasis [ref=f1e990]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e991]:
+        - text: U+F1BA
+        - emphasis [ref=f1e992]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e993]:
+        - text: U+F160
+        - emphasis [ref=f1e994]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e995]':
+        - text: U+F120
+        - emphasis [ref=f1e996]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e997]:
+        - text: U+F1C6
+        - emphasis [ref=f1e998]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e999]:
+        - text: U+F14A
+        - emphasis [ref=f1e1000]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1001]:
+        - text: U+F1AA
+        - emphasis [ref=f1e1002]: base glyph · UNKNOWN
+    - generic [ref=f1e1003]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e1004]
+    - generic [ref=f1e1005]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e1006]
+  - generic [ref=f1e1007]:
+    - heading "11 développement n.m. dictionary p.135 (right column)" [level=2] [ref=f1e1008]:
+      - generic [ref=f1e1009]: "11"
+      - text: développement
+      - generic [ref=f1e1010]: n.m.
+      - generic [ref=f1e1011]: dictionary p.135 (right column)
+    - generic [ref=f1e1012]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e1013]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for développement" [ref=f1e1014]
+    - generic [ref=f1e1015]: Legacy codepoints as stored in the PDF (12 characters, 11 UNKNOWN)
+    - generic [ref=f1e1016]:
+      - 'generic "Recovered: space" [ref=f1e1017]':
+        - text: U+F120
+        - emphasis [ref=f1e1018]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1019]:
+        - text: U+F1C9
+        - emphasis [ref=f1e1020]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1021]:
+        - text: U+F17C
+        - emphasis [ref=f1e1022]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1023]:
+        - text: U+F1AA
+        - emphasis [ref=f1e1024]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1025]:
+        - text: U+F161
+        - emphasis [ref=f1e1026]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1027]:
+        - text: U+F17F
+        - emphasis [ref=f1e1028]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1029]:
+        - text: U+F1A9
+        - emphasis [ref=f1e1030]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1031]:
+        - text: U+F17A
+        - emphasis [ref=f1e1032]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1033]:
+        - text: U+F14A
+        - emphasis [ref=f1e1034]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1035]:
+        - text: U+F173
+        - emphasis [ref=f1e1036]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1037]:
+        - text: U+F142
+        - emphasis [ref=f1e1038]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1039]:
+        - text: U+F169
+        - emphasis [ref=f1e1040]: base glyph · UNKNOWN
+    - generic [ref=f1e1041]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e1042]
+    - generic [ref=f1e1043]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e1044]
+  - generic [ref=f1e1045]:
+    - heading "12 alléluia n.m. dictionary p.34 (left column)" [level=2] [ref=f1e1046]:
+      - generic [ref=f1e1047]: "12"
+      - text: alléluia
+      - generic [ref=f1e1048]: n.m.
+      - generic [ref=f1e1049]: dictionary p.34 (left column)
+    - generic [ref=f1e1050]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e1051]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for alléluia" [ref=f1e1052]
+    - generic [ref=f1e1053]: Legacy codepoints as stored in the PDF (18 characters, 16 UNKNOWN)
+    - generic [ref=f1e1054]:
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1055]:
+        - text: U+F1A8
+        - emphasis [ref=f1e1056]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1057]:
+        - text: U+F160
+        - emphasis [ref=f1e1058]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1059]:
+        - text: U+F1D2
+        - emphasis [ref=f1e1060]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1061]:
+        - text: U+F142
+        - emphasis [ref=f1e1062]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1063]:
+        - text: U+F169
+        - emphasis [ref=f1e1064]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1065]:
+        - text: U+F1C4
+        - emphasis [ref=f1e1066]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1067]:
+        - text: U+F158
+        - emphasis [ref=f1e1068]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1069]:
+        - text: U+F17A
+        - emphasis [ref=f1e1070]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1071]':
+        - text: U+F120
+        - emphasis [ref=f1e1072]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1073]:
+        - text: U+F1AF
+        - emphasis [ref=f1e1074]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1075]:
+        - text: U+F17F
+        - emphasis [ref=f1e1076]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1077]:
+        - text: U+F142
+        - emphasis [ref=f1e1078]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1079]:
+        - text: U+F165
+        - emphasis [ref=f1e1080]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1081]:
+        - text: U+F1C9
+        - emphasis [ref=f1e1082]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1083]:
+        - text: U+F149
+        - emphasis [ref=f1e1084]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1085]:
+        - text: U+F17D
+        - emphasis [ref=f1e1086]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1087]:
+        - text: U+F1A5
+        - emphasis [ref=f1e1088]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1089]':
+        - text: U+F120
+        - emphasis [ref=f1e1090]: space
+    - generic [ref=f1e1091]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e1092]
+    - generic [ref=f1e1093]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e1094]
+  - generic [ref=f1e1095]:
+    - heading "13 olympe n.m. dictionary p.300 (right column)" [level=2] [ref=f1e1096]:
+      - generic [ref=f1e1097]: "13"
+      - text: olympe
+      - generic [ref=f1e1098]: n.m.
+      - generic [ref=f1e1099]: dictionary p.300 (right column)
+    - generic [ref=f1e1100]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e1101]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for olympe" [ref=f1e1102]
+    - generic [ref=f1e1103]: Legacy codepoints as stored in the PDF (20 characters, 18 UNKNOWN)
+    - generic [ref=f1e1104]:
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1105]:
+        - text: U+F1C4
+        - emphasis [ref=f1e1106]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1107]:
+        - text: U+F162
+        - emphasis [ref=f1e1108]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1109]:
+        - text: U+F1A9
+        - emphasis [ref=f1e1110]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1111]':
+        - text: U+F120
+        - emphasis [ref=f1e1112]: space
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1113]:
+        - text: U+F14A
+        - emphasis [ref=f1e1114]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1115]:
+        - text: U+F16F
+        - emphasis [ref=f1e1116]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1117]:
+        - text: U+F1D5
+        - emphasis [ref=f1e1118]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1119]:
+        - text: U+F142
+        - emphasis [ref=f1e1120]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1121]:
+        - text: U+F152
+        - emphasis [ref=f1e1122]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1123]':
+        - text: U+F120
+        - emphasis [ref=f1e1124]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1125]:
+        - text: U+F1C6
+        - emphasis [ref=f1e1126]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1127]:
+        - text: U+F162
+        - emphasis [ref=f1e1128]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1129]:
+        - text: U+F170
+        - emphasis [ref=f1e1130]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1131]:
+        - text: U+F16A
+        - emphasis [ref=f1e1132]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1133]:
+        - text: U+F161
+        - emphasis [ref=f1e1134]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1135]:
+        - text: U+F167
+        - emphasis [ref=f1e1136]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1137]:
+        - text: U+F1C9
+        - emphasis [ref=f1e1138]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1139]:
+        - text: U+F1AE
+        - emphasis [ref=f1e1140]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1141]:
+        - text: U+F1AA
+        - emphasis [ref=f1e1142]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1143]:
+        - text: U+F163
+        - emphasis [ref=f1e1144]: base glyph · UNKNOWN
+    - generic [ref=f1e1145]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e1146]
+    - generic [ref=f1e1147]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e1148]
+  - generic [ref=f1e1149]:
+    - heading "14 ou touchaud n.m. dictionary p.463 (right column)" [level=2] [ref=f1e1150]:
+      - generic [ref=f1e1151]: "14"
+      - text: ou touchaud
+      - generic [ref=f1e1152]: n.m.
+      - generic [ref=f1e1153]: dictionary p.463 (right column)
+    - generic [ref=f1e1154]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e1155]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for ou touchaud" [ref=f1e1156]
+    - generic [ref=f1e1157]: Legacy codepoints as stored in the PDF (21 characters, 16 UNKNOWN)
+    - generic [ref=f1e1158]:
+      - 'generic "Recovered: space" [ref=f1e1159]':
+        - text: U+F120
+        - emphasis [ref=f1e1160]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1161]:
+        - text: U+F1C4
+        - emphasis [ref=f1e1162]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1163]:
+        - text: U+F1AC
+        - emphasis [ref=f1e1164]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1165]:
+        - text: U+F15A
+        - emphasis [ref=f1e1166]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1167]:
+        - text: U+F173
+        - emphasis [ref=f1e1168]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1169]':
+        - text: U+F120
+        - emphasis [ref=f1e1170]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1171]:
+        - text: U+F1C6
+        - emphasis [ref=f1e1172]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1173]:
+        - text: U+F164
+        - emphasis [ref=f1e1174]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1175]:
+        - text: U+F160
+        - emphasis [ref=f1e1176]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1177]':
+        - text: U+F120
+        - emphasis [ref=f1e1178]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1179]:
+        - text: U+F1C6
+        - emphasis [ref=f1e1180]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1181]:
+        - text: U+F1AB
+        - emphasis [ref=f1e1182]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1183]:
+        - text: U+F174
+        - emphasis [ref=f1e1184]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1185]:
+        - text: U+F1CA
+        - emphasis [ref=f1e1186]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1187]:
+        - text: U+F161
+        - emphasis [ref=f1e1188]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1189]:
+        - text: U+F1A5
+        - emphasis [ref=f1e1190]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1191]':
+        - text: U+F120
+        - emphasis [ref=f1e1192]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1193]:
+        - text: U+F1C8
+        - emphasis [ref=f1e1194]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1195]:
+        - text: U+F1A7
+        - emphasis [ref=f1e1196]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1197]:
+        - text: U+F17D
+        - emphasis [ref=f1e1198]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1199]':
+        - text: U+F120
+        - emphasis [ref=f1e1200]: space
+    - generic [ref=f1e1201]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e1202]
+    - generic [ref=f1e1203]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e1204]
+  - generic [ref=f1e1205]:
+    - heading "15 affermissement n.m. dictionary p.29 (left column)" [level=2] [ref=f1e1206]:
+      - generic [ref=f1e1207]: "15"
+      - text: affermissement
+      - generic [ref=f1e1208]: n.m.
+      - generic [ref=f1e1209]: dictionary p.29 (left column)
+    - generic [ref=f1e1210]:
+      - text: Original printed entry — transcribe the
+      - strong [ref=f1e1211]: boxed line only
+      - text: (image from the PDF; this is the ground truth)
+    - img "printed entry for affermissement" [ref=f1e1212]
+    - generic [ref=f1e1213]: Legacy codepoints as stored in the PDF (15 characters, 14 UNKNOWN)
+    - generic [ref=f1e1214]:
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1215]:
+        - text: U+F14A
+        - emphasis [ref=f1e1216]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1217]:
+        - text: U+F1A9
+        - emphasis [ref=f1e1218]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1219]:
+        - text: U+F142
+        - emphasis [ref=f1e1220]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1221]:
+        - text: U+F152
+        - emphasis [ref=f1e1222]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1223]:
+        - text: U+F1A1
+        - emphasis [ref=f1e1224]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1225]:
+        - text: U+F17A
+        - emphasis [ref=f1e1226]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1227]:
+        - text: U+F1A6
+        - emphasis [ref=f1e1228]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1229]:
+        - text: U+F16A
+        - emphasis [ref=f1e1230]: base glyph · UNKNOWN
+      - 'generic "Recovered: space" [ref=f1e1231]':
+        - text: U+F120
+        - emphasis [ref=f1e1232]: space
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1233]:
+        - text: U+F1C9
+        - emphasis [ref=f1e1234]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1235]:
+        - text: U+F1AB
+        - emphasis [ref=f1e1236]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1237]:
+        - text: U+F169
+        - emphasis [ref=f1e1238]: base glyph · UNKNOWN
+      - generic "combining mark - identity UNKNOWN" [ref=f1e1239]:
+        - text: U+F1D7
+        - emphasis [ref=f1e1240]: combining mark · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1241]:
+        - text: U+F142
+        - emphasis [ref=f1e1242]: base glyph · UNKNOWN
+      - generic "base glyph - identity UNKNOWN" [ref=f1e1243]:
+        - text: U+F169
+        - emphasis [ref=f1e1244]: base glyph · UNKNOWN
+    - generic [ref=f1e1245]: "Reviewer: type the Unicode N'Ko for this entry"
+    - textbox "Type the N'Ko here, exactly as printed above…" [ref=f1e1246]
+    - generic [ref=f1e1247]: Notes / uncertainty (optional)
+    - textbox "Anything unclear, ambiguous, or illegible…" [ref=f1e1248]
+  - generic [ref=f1e1249]:
+    - strong [ref=f1e1250]: Provenance
+    - list [ref=f1e1251]:
+      - listitem [ref=f1e1252]:
+        - text: "Source PDF SHA-256:"
+        - code [ref=f1e1253]: 871628d99b9601cbdb9d797c54ffa81cad0f0ba1b4920de3aca64e3706be574b
+        - text: (unmodified)
+      - listitem [ref=f1e1254]: Images rendered directly from the PDF at 4× scale; no OCR, no reconstruction.
+      - listitem [ref=f1e1255]: Codepoint sequences taken from the PDF's own text layer for the same printed line.

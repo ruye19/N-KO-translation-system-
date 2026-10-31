@@ -1,0 +1,507 @@
+{
+ "0042": {
+  "unicode": "U+07CA",
+  "tier": "STRONG",
+  "evidence": "shape(final 0.81 both refs); 42≡05D0 identical outline; basmala 'Ala', alphabet 'a', Baba/Mamadi"
+ },
+ "0048": {
+  "unicode": "U+07DA",
+  "tier": "CANDIDATE",
+  "evidence": "shape: Ebrima top ߚ, refs disagree; 34 occurrences, mostly ideophones"
+ },
+ "0049": {
+  "unicode": "U+07CC",
+  "tier": "STRONG",
+  "evidence": "shape(final 0.72 both); alphabet 'i'; Mamadi, Jinɛ"
+ },
+ "004A": {
+  "unicode": "U+07CC",
+  "tier": "STRONG",
+  "evidence": "shape(final 0.72 both); alphabet 'i'; Mamadi, Jinɛ"
+ },
+ "004B": {
+  "unicode": "U+07D6",
+  "tier": "STRONG",
+  "evidence": "Kanjamadi crib; positional pair of 4C"
+ },
+ "004C": {
+  "unicode": "U+07D6",
+  "tier": "STRONG",
+  "evidence": "shape 0.78/0.74; alphabet 'j','g'; 'z'=4C+dot"
+ },
+ "004D": {
+  "unicode": "U+07E0",
+  "tier": "STRONG",
+  "evidence": "woloso rule: follows nasal 94.3% (plain ߟ 4.7%)"
+ },
+ "004F": {
+  "unicode": "U+07E4",
+  "tier": "STRONG",
+  "evidence": "shape 0.82/0.80 (51); alphabet 'h'; basmala hinla, hakili"
+ },
+ "0051": {
+  "unicode": "U+07E4",
+  "tier": "STRONG",
+  "evidence": "shape 0.82/0.80 (51); alphabet 'h'; basmala hinla, hakili"
+ },
+ "0052": {
+  "unicode": "U+07E1",
+  "tier": "STRONG",
+  "evidence": "shape Δ 0.69/0.76 (54); alphabet 'm'; basmala, Mamadi"
+ },
+ "0054": {
+  "unicode": "U+07E1",
+  "tier": "STRONG",
+  "evidence": "shape Δ 0.69/0.76 (54); alphabet 'm'; basmala, Mamadi"
+ },
+ "0055": {
+  "unicode": "U+07E2",
+  "tier": "STRONG",
+  "evidence": "Noto shape top; dunya, nyɔɔn, nya cribs"
+ },
+ "0056": {
+  "unicode": "U+07E2",
+  "tier": "CANDIDATE",
+  "evidence": "shape ߢ/ߧ ambiguous; ≤3 occurrences"
+ },
+ "0057": {
+  "unicode": "U+07E2",
+  "tier": "CANDIDATE",
+  "evidence": "shape ߢ/ߧ ambiguous; ≤3 occurrences"
+ },
+ "0058": {
+  "unicode": "U+07D2",
+  "tier": "STRONG",
+  "evidence": "shape top both refs; ߒߞߏ 'N'Ko' crib"
+ },
+ "0059": {
+  "unicode": "U+07F3",
+  "tier": "CANDIDATE",
+  "evidence": "07F3: shape 0.70/0.80, but only 1 occurrence"
+ },
+ "005A": {
+  "unicode": "U+07F4",
+  "tier": "STRONG",
+  "evidence": "shape ߴ 0.68/0.64 vs 0.33; elision after high-tone ni"
+ },
+ "005F": {
+  "unicode": "U+07FA",
+  "tier": "CANDIDATE",
+  "evidence": "shape ߺ 0.41/0.42 vs 0.29; used as elongation"
+ },
+ "0060": {
+  "unicode": "U+07D8",
+  "tier": "STRONG",
+  "evidence": "shape top both; Kanjamadi, Mamadi, den, dunya"
+ },
+ "0061": {
+  "unicode": "U+07CE",
+  "tier": "STRONG",
+  "evidence": "shape 0.64/0.80 (62); alphabet 'u'; dunya"
+ },
+ "0062": {
+  "unicode": "U+07CE",
+  "tier": "STRONG",
+  "evidence": "shape 0.64/0.80 (62); alphabet 'u'; dunya"
+ },
+ "0063": {
+  "unicode": "U+07CF",
+  "tier": "STRONG",
+  "evidence": "shape 0.65/0.67 (64); alphabet 'o'; ߒߞߏ, bolo"
+ },
+ "0064": {
+  "unicode": "U+07CF",
+  "tier": "STRONG",
+  "evidence": "shape 0.65/0.67 (64); alphabet 'o'; ߒߞߏ, bolo"
+ },
+ "0065": {
+  "unicode": "U+07E7",
+  "tier": "STRONG",
+  "evidence": "woloso rule: follows nasal 97.6% (plain ߦ 12.7%); shape top Ebrima"
+ },
+ "0066": {
+  "unicode": "U+07E7",
+  "tier": "CANDIDATE",
+  "evidence": "shape ߧ (0.63/0.71) final; 1 occurrence"
+ },
+ "0067": {
+  "unicode": "U+07D4",
+  "tier": "STRONG",
+  "evidence": "Nipɔn (Japan entries), Erɔpu (Europe); 68 final shape 0.74/0.86"
+ },
+ "0068": {
+  "unicode": "U+07D4",
+  "tier": "STRONG",
+  "evidence": "final forms; strong shape matches (0.74–0.86) + pair with confirmed medial"
+ },
+ "0069": {
+  "unicode": "U+07D3",
+  "tier": "STRONG",
+  "evidence": "bolo (vowel elision), Baba, ߓߊ 'mère'"
+ },
+ "006A": {
+  "unicode": "U+07DE",
+  "tier": "STRONG",
+  "evidence": "alphabet 'k'; Kanjamadi, N'Ko, kan, kelen"
+ },
+ "006B": {
+  "unicode": "U+07D7",
+  "tier": "STRONG",
+  "evidence": "6B≡6C identical; cɛ 'homme', -cɛ agent suffix; 6E shape 0.77/0.86"
+ },
+ "006C": {
+  "unicode": "U+07D7",
+  "tier": "STRONG",
+  "evidence": "6B≡6C identical; cɛ 'homme', -cɛ agent suffix; 6E shape 0.77/0.86"
+ },
+ "006E": {
+  "unicode": "U+07D7",
+  "tier": "STRONG",
+  "evidence": "final forms; strong shape matches (0.74–0.86) + pair with confirmed medial"
+ },
+ "006F": {
+  "unicode": "U+07D9",
+  "tier": "STRONG",
+  "evidence": "6F≡70 identical; Kaahira, Misira, Faransi; 71 shape 0.84"
+ },
+ "0070": {
+  "unicode": "U+07D9",
+  "tier": "STRONG",
+  "evidence": "6F≡70 identical; Kaahira, Misira, Faransi; 71 shape 0.84"
+ },
+ "0071": {
+  "unicode": "U+07D9",
+  "tier": "STRONG",
+  "evidence": "final forms; strong shape matches (0.74–0.86) + pair with confirmed medial"
+ },
+ "0072": {
+  "unicode": "U+07D9",
+  "tier": "STRONG",
+  "evidence": "final forms; strong shape matches (0.74–0.86) + pair with confirmed medial"
+ },
+ "0073": {
+  "unicode": "U+07E6",
+  "tier": "STRONG",
+  "evidence": "yiri 'arbre', ye; 75 alphabet 'y'"
+ },
+ "0074": {
+  "unicode": "U+07E6",
+  "tier": "STRONG",
+  "evidence": "yiri 'arbre', ye; 75 alphabet 'y'"
+ },
+ "0075": {
+  "unicode": "U+07E6",
+  "tier": "STRONG",
+  "evidence": "alphabet 'y'; shape top both"
+ },
+ "0077": {
+  "unicode": "U+07E5",
+  "tier": "CANDIDATE",
+  "evidence": "shape top both refs (0.51/0.42); medial pair of 78; few distinctive cribs"
+ },
+ "0078": {
+  "unicode": "U+07E5",
+  "tier": "STRONG",
+  "evidence": "alphabet 'w'; 'wa, wali = taa, taali'; wuya 'mensonge'; NOTE trailing spacer"
+ },
+ "0079": {
+  "unicode": "U+07D5",
+  "tier": "STRONG",
+  "evidence": "shape 0.69/0.72 (7A); tɔɔ 'nom', tele 'soleil', Batɛ"
+ },
+ "007A": {
+  "unicode": "U+07D5",
+  "tier": "STRONG",
+  "evidence": "shape 0.69/0.72 (7A); tɔɔ 'nom', tele 'soleil', Batɛ"
+ },
+ "007B": {
+  "unicode": "U+07CB",
+  "tier": "STRONG",
+  "evidence": "Noto 0.70 (7C); den, tele, kelen, Erɔpu"
+ },
+ "007C": {
+  "unicode": "U+07CB",
+  "tier": "STRONG",
+  "evidence": "Noto 0.70 (7C); den, tele, kelen, Erɔpu"
+ },
+ "007D": {
+  "unicode": "U+07E3",
+  "tier": "STRONG",
+  "evidence": "basmala hinla/mahinla, nɔnɔ 'lait', Sinɛkaali"
+ },
+ "007F": {
+  "unicode": "U+07DD",
+  "tier": "STRONG",
+  "evidence": "Faransi, fila 'deux', Nfajika; E1 = alphabet 'f'"
+ },
+ "00A1": {
+  "unicode": "U+07DC",
+  "tier": "STRONG",
+  "evidence": "shape ▽ (A4 Noto 0.71); sigma = ߜ߭ (g); dùusàgbɛ"
+ },
+ "00A2": {
+  "unicode": "U+07DC",
+  "tier": "STRONG",
+  "evidence": "shape ▽ (A4 Noto 0.71); sigma = ߜ߭ (g); dùusàgbɛ"
+ },
+ "00A3": {
+  "unicode": "U+07DC",
+  "tier": "STRONG",
+  "evidence": "shape ▽ (A4 Noto 0.71); sigma = ߜ߭ (g); dùusàgbɛ"
+ },
+ "00A4": {
+  "unicode": "U+07DC",
+  "tier": "STRONG",
+  "evidence": "shape ▽ (A4 Noto 0.71); sigma = ߜ߭ (g); dùusàgbɛ"
+ },
+ "00A5": {
+  "unicode": "U+07DB",
+  "tier": "STRONG",
+  "evidence": "alphabet 's'; sɛbɛ, Misira, Solomana"
+ },
+ "00A6": {
+  "unicode": "U+07CD",
+  "tier": "STRONG",
+  "evidence": "shape Λ 0.78/0.74 margin 0.4; Janɛ, Jinɛ, cɛ"
+ },
+ "00A7": {
+  "unicode": "U+07CD",
+  "tier": "STRONG",
+  "evidence": "shape Λ 0.78/0.74 margin 0.4; Janɛ, Jinɛ, cɛ"
+ },
+ "00A8": {
+  "unicode": "U+07CD",
+  "tier": "STRONG",
+  "evidence": "shape Λ 0.78/0.74 margin 0.4; Janɛ, Jinɛ, cɛ"
+ },
+ "00A9": {
+  "unicode": "U+07DF",
+  "tier": "STRONG",
+  "evidence": "A9≡AA identical; basmala Ala/la, alphabet 'l', Solomana"
+ },
+ "00AA": {
+  "unicode": "U+07DF",
+  "tier": "STRONG",
+  "evidence": "A9≡AA identical; basmala Ala/la, alphabet 'l', Solomana"
+ },
+ "00AB": {
+  "unicode": "U+07CA",
+  "tier": "STRONG",
+  "evidence": "shape(final 0.81 both refs); 42≡05D0 identical outline; basmala 'Ala', alphabet 'a', Baba/Mamadi"
+ },
+ "00AC": {
+  "unicode": "U+07CA",
+  "tier": "STRONG",
+  "evidence": "shape(final 0.81 both refs); 42≡05D0 identical outline; basmala 'Ala', alphabet 'a', Baba/Mamadi"
+ },
+ "00AE": {
+  "unicode": "U+07D0",
+  "tier": "STRONG",
+  "evidence": "shape 0.70/0.72 (AF/BA); tɔɔ, nɔnɔ, kɔnɔ"
+ },
+ "00AF": {
+  "unicode": "U+07D0",
+  "tier": "STRONG",
+  "evidence": "shape 0.70/0.72 (AF/BA); tɔɔ, nɔnɔ, kɔnɔ"
+ },
+ "00BA": {
+  "unicode": "U+07D0",
+  "tier": "STRONG",
+  "evidence": "shape 0.70/0.72 (AF/BA); tɔɔ, nɔnɔ, kɔnɔ"
+ },
+ "00BB": {
+  "unicode": "U+07F5",
+  "tier": "STRONG",
+  "evidence": "shape ߵ 0.76/0.69 vs 0.39; elision after low-tone kà"
+ },
+ "00BC": {
+  "unicode": "U+07F8",
+  "tier": "STRONG",
+  "evidence": "BC≡BD identical; shape ߸ 0.57/0.59 vs 0.11; clause separator"
+ },
+ "00BD": {
+  "unicode": "U+07F8",
+  "tier": "STRONG",
+  "evidence": "BC≡BD identical; shape ߸ 0.57/0.59 vs 0.11; clause separator"
+ },
+ "00C0": {
+  "unicode": "U+07D1",
+  "tier": "STRONG",
+  "evidence": "C0≡C1 identical; shape 0.54/0.52; Abdul, Baltika, bristol, sigma"
+ },
+ "00C1": {
+  "unicode": "U+07D1",
+  "tier": "STRONG",
+  "evidence": "C0≡C1 identical; shape 0.54/0.52; Abdul, Baltika, bristol, sigma"
+ },
+ "00C4": {
+  "unicode": "U+07EC",
+  "tier": "STRONG",
+  "evidence": "07EC: shape 0.82/0.77; 98.7% on vowels"
+ },
+ "00C5": {
+  "unicode": "U+07ED",
+  "tier": "STRONG",
+  "evidence": "07ED: shape 0.90/0.66; v=ߝ߭ z=ߖ߭ g=ߜ߭ in alphabet"
+ },
+ "00C6": {
+  "unicode": "U+07EB",
+  "tier": "STRONG",
+  "evidence": "07EB: shape 0.78/0.67; 100% on vowels"
+ },
+ "00C7": {
+  "unicode": "U+07F0",
+  "tier": "STRONG",
+  "evidence": "07F0: shape 0.80/0.73; 100% on vowels"
+ },
+ "00C8": {
+  "unicode": "U+07F1",
+  "tier": "STRONG",
+  "evidence": "07F1: shape 0.55/0.58 (thin margin); ߡߐ߱ 'personne', ߞߐ߱ 'sel'"
+ },
+ "00C9": {
+  "unicode": "U+07F2",
+  "tier": "STRONG",
+  "evidence": "07F2: only below-mark; shape 0.94/0.78; 99.9% on vowels"
+ },
+ "00CA": {
+  "unicode": "U+07EF",
+  "tier": "STRONG",
+  "evidence": "07EF: shape 0.55/0.58 (thin margin); Solomaana"
+ },
+ "00CB": {
+  "unicode": "U+07EE",
+  "tier": "STRONG",
+  "evidence": "07EE: shape 0.69/0.61; ߕߐ߮ 'nom'"
+ },
+ "00CC": {
+  "unicode": "U+07EC U+07F2",
+  "tier": "STRONG",
+  "evidence": "=C4+C9 exact union"
+ },
+ "00CD": {
+  "unicode": "U+07ED U+07F2",
+  "tier": "STRONG",
+  "evidence": "=C5+C9 exact union"
+ },
+ "00D0": {
+  "unicode": "U+07EF U+07F2",
+  "tier": "STRONG",
+  "evidence": "=CA+C9 exact union"
+ },
+ "00D1": {
+  "unicode": "U+07EE U+07F2",
+  "tier": "STRONG",
+  "evidence": "=CB+C9 exact union"
+ },
+ "00D2": {
+  "unicode": "U+07EC",
+  "tier": "STRONG",
+  "evidence": "=C4 identical"
+ },
+ "00D3": {
+  "unicode": "U+07ED",
+  "tier": "STRONG",
+  "evidence": "=C5 identical"
+ },
+ "00D4": {
+  "unicode": "U+07EB",
+  "tier": "STRONG",
+  "evidence": "=C6 bbox"
+ },
+ "00D5": {
+  "unicode": "U+07F0",
+  "tier": "STRONG",
+  "evidence": "=C7 identical"
+ },
+ "00D7": {
+  "unicode": "U+07F2",
+  "tier": "STRONG",
+  "evidence": "=C9 identical"
+ },
+ "00D8": {
+  "unicode": "U+07EF",
+  "tier": "STRONG",
+  "evidence": "=CA identical"
+ },
+ "00D9": {
+  "unicode": "U+07EE",
+  "tier": "STRONG",
+  "evidence": "=CB identical"
+ },
+ "00DA": {
+  "unicode": "U+07EC U+07F2",
+  "tier": "STRONG",
+  "evidence": "=D2+D7 exact union"
+ },
+ "00DB": {
+  "unicode": "U+07ED U+07F2",
+  "tier": "STRONG",
+  "evidence": "=D3+D7 exact union"
+ },
+ "00E1": {
+  "unicode": "U+07DD",
+  "tier": "STRONG",
+  "evidence": "alphabet 'f'; 'v' = E1+dot"
+ },
+ "05D0": {
+  "unicode": "U+07CA",
+  "tier": "STRONG",
+  "evidence": "shape(final 0.81 both refs); 42≡05D0 identical outline; basmala 'Ala', alphabet 'a', Baba/Mamadi"
+ },
+ "05DE": {
+  "unicode": "U+07E3",
+  "tier": "STRONG",
+  "evidence": "shape 0.79/0.82; alphabet 'n'"
+ },
+ "0660": {
+  "unicode": "U+07C0",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0661": {
+  "unicode": "U+07C1",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0662": {
+  "unicode": "U+07C2",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0663": {
+  "unicode": "U+07C3",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0664": {
+  "unicode": "U+07C4",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0665": {
+  "unicode": "U+07C5",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0666": {
+  "unicode": "U+07C6",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0667": {
+  "unicode": "U+07C7",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0668": {
+  "unicode": "U+07C8",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ },
+ "0669": {
+  "unicode": "U+07C9",
+  "tier": "STRONG",
+  "evidence": "N'Ko digit glyph (prior shape test) + alphabet ordinals 7..26 all correct"
+ }
+}

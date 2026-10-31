@@ -7,9 +7,11 @@ Run from the backend/ directory:
 import logging
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from app.config import get_settings
 from app.routers import health, translate
@@ -58,7 +60,39 @@ async def lifespan(_: FastAPI):
                     "at aistudio.google.com/apikey."
                 )
 
+    _report_access_settings()
     yield
+
+
+def _report_access_settings() -> None:
+    """Say how translation requests are protected. Never logs a key."""
+    from app.security import MIN_KEY_LENGTH
+
+    keys = settings.translator_api_key_list
+    if not settings.require_api_key:
+        logger.warning(
+            "REQUIRE_API_KEY=false: /api/translate accepts requests without an "
+            "access key. Use this only for local development."
+        )
+    elif not keys:
+        logger.warning(
+            "TRANSLATOR_API_KEY is not set, so /api/translate will refuse every "
+            "request. Set it, or set REQUIRE_API_KEY=false for local development."
+        )
+    elif any(len(k) < MIN_KEY_LENGTH for k in keys):
+        logger.warning(
+            "TRANSLATOR_API_KEY is shorter than %d characters. Generate a longer "
+            "random key (see docs/API_INTEGRATION.md).",
+            MIN_KEY_LENGTH,
+        )
+    if settings.rate_limit_requests > 0:
+        logger.info(
+            "Rate limit: %d translation requests per %g seconds per client address.",
+            settings.rate_limit_requests,
+            settings.rate_limit_window_seconds,
+        )
+    else:
+        logger.warning("RATE_LIMIT_REQUESTS=0: translation requests are not rate limited.")
 
 
 app = FastAPI(
@@ -76,22 +110,49 @@ app.add_middleware(
     allow_origins=settings.cors_origin_list,
     allow_credentials=False,
     allow_methods=["GET", "POST", "OPTIONS"],
+    # Authorization is deliberately not allowed: the access key must never be
+    # placed in a browser, so keyed calls come from a server, where CORS does
+    # not apply.
     allow_headers=["Content-Type"],
+    expose_headers=["Retry-After"],
 )
 
 app.include_router(health.router, prefix="/api")
 app.include_router(translate.router, prefix="/api")
 
 
-@app.exception_handler(HTTPException)
-async def http_exception_handler(request: Request, exc: HTTPException):
+_STATUS_CODES = {404: "not_found", 405: "method_not_allowed"}
+
+
+# Registered for Starlette's HTTPException so that routing errors (404, 405)
+# get the same envelope as the API's own errors; FastAPI's HTTPException is a
+# subclass and is covered too.
+@app.exception_handler(StarletteHTTPException)
+async def http_exception_handler(request: Request, exc: StarletteHTTPException):
     """Normalise every error into {"error": {"code", "message"}}."""
     detail = exc.detail
     if isinstance(detail, dict) and "code" in detail:
         body = {"error": {"code": detail["code"], "message": detail.get("message", "")}}
     else:
-        body = {"error": {"code": "http_error", "message": str(detail)}}
-    return JSONResponse(status_code=exc.status_code, content=body)
+        body = {"error": {"code": _STATUS_CODES.get(exc.status_code, "http_error"), "message": str(detail)}}
+    return JSONResponse(status_code=exc.status_code, content=body, headers=getattr(exc, "headers", None))
+
+
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    """Malformed request body: same envelope, status 422. The client's input is
+    never echoed back."""
+    problems = []
+    for err in exc.errors():
+        if err.get("type") == "json_invalid":
+            problems = ["the request body is not valid JSON"]
+            break
+        field = ".".join(str(p) for p in err.get("loc", ()) if p != "body") or "body"
+        problems.append(f"{field}: {err.get('msg', 'invalid')}")
+    return JSONResponse(
+        status_code=422,
+        content={"error": {"code": "invalid_request", "message": "Invalid request: " + "; ".join(problems[:5]) + "."}},
+    )
 
 
 @app.exception_handler(Exception)

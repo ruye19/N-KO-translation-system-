@@ -37,6 +37,26 @@ class Settings(BaseSettings):
     # Translation wants fidelity, not invention, so keep sampling low.
     gemini_temperature: float = Field(default=0.2, alias="GEMINI_TEMPERATURE")
 
+    # At most one retry of a temporary Gemini failure (429, 500, 502, 503 or a
+    # failed connection). 0 disables it; larger values are capped at 1.
+    provider_max_retries: int = Field(default=1, alias="PROVIDER_MAX_RETRIES")
+    provider_retry_delay_seconds: float = Field(default=1.0, alias="PROVIDER_RETRY_DELAY_SECONDS")
+    # If the provider asks for a longer wait (Retry-After), do not retry at all.
+    provider_retry_max_delay_seconds: float = Field(default=5.0, alias="PROVIDER_RETRY_MAX_DELAY_SECONDS")
+
+    # --- Access control -----------------------------------------------------
+    # Shared secret(s) callers send as "Authorization: Bearer <key>". Several
+    # keys may be given, comma-separated, to rotate without downtime.
+    translator_api_key: Optional[str] = Field(default=None, alias="TRANSLATOR_API_KEY")
+    # Fail closed: with no key configured, translation requests are refused.
+    # Set to false only for local development.
+    require_api_key: bool = Field(default=True, alias="REQUIRE_API_KEY")
+
+    # --- Rate limiting ------------------------------------------------------
+    # Per client address, per worker process. 0 disables the limit.
+    rate_limit_requests: int = Field(default=30, alias="RATE_LIMIT_REQUESTS")
+    rate_limit_window_seconds: float = Field(default=60.0, alias="RATE_LIMIT_WINDOW_SECONDS")
+
     # --- Input limits -------------------------------------------------------
     max_input_chars: int = Field(default=5000, alias="MAX_INPUT_CHARS")
 
@@ -57,6 +77,10 @@ class Settings(BaseSettings):
     @property
     def cors_origin_list(self) -> list[str]:
         return [o.strip() for o in self.cors_origins.split(",") if o.strip()]
+
+    @property
+    def translator_api_key_list(self) -> list[str]:
+        return [k.strip() for k in (self.translator_api_key or "").split(",") if k.strip()]
 
 
 @lru_cache

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N'Ko Spacing Review</title>
+<link rel="stylesheet" href="spacing.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>N'Ko spacing review · v1.1 → v1.2</h1>
+    <p class="sub">Local only · copyrighted excerpts · do not upload or publish</p>
+  </div>
+  <div class="progress" aria-live="polite">
+    <div class="bar"><span id="progress-fill"></span></div>
+    <span id="progress-text">–</span>
+  </div>
+  <div class="tools">
+    <label class="reviewer">Reviewer <input id="reviewer" type="text" autocomplete="off" placeholder="initials"></label>
+    <button id="btn-summary" type="button">Summary</button>
+    <button id="btn-export" type="button" class="primary">Export TSV</button>
+    <label class="file-btn">Import TSV<input id="file-import" type="file" accept=".tsv,text/tab-separated-values"></label>
+    <button id="btn-reset" type="button" class="danger">Clear</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="list-pane">
+    <div class="filters">
+      <input id="f-search" type="search" placeholder="Search id, headword, entry_ref">
+      <div class="row">
+        <select id="f-status" aria-label="Status">
+          <option value="all">All records</option>
+          <option value="unreviewed">Unreviewed</option>
+          <option value="partial">Partly reviewed</option>
+          <option value="complete">Complete</option>
+          <option value="problem">Problem or uncertain</option>
+        </select>
+        <select id="f-change" aria-label="Change type">
+          <option value="all">All changes</option>
+          <option value="inserted">Has inserted spaces</option>
+          <option value="removed">Has removed spaces</option>
+          <option value="kept">Has gaps left joined</option>
+        </select>
+      </div>
+      <select id="f-stratum" aria-label="Original stratum"></select>
+      <p id="list-count" class="muted"></p>
+    </div>
+    <ol id="record-list" class="record-list"></ol>
+  </aside>
+  <main id="detail" class="detail" tabindex="-1"></main>
+</div>
+
+<dialog id="summary-dialog">
+  <form method="dialog">
+    <h2>Spacing review results</h2>
+    <p class="muted">Answers describe spacing only. They do not verify translations; every row stays machine_decoded.</p>
+    <div id="summary-body"></div>
+    <button type="submit">Close</button>
+  </form>
+</dialog>
+
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="spacing_data.js"></script>
+<script src="review_core.js"></script>
+<script src="spacing_core.js"></script>
+<script src="spacing_app.js"></script>
+</body>
+</html>

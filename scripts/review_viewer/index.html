@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>N'Ko Review Kit</title>
+<link rel="stylesheet" href="review.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand">
+    <h1>N'Ko decoder review</h1>
+    <p class="sub">Local only · copyrighted excerpts · do not upload or publish</p>
+  </div>
+  <div class="progress" aria-live="polite">
+    <div class="bar"><span id="progress-fill"></span></div>
+    <span id="progress-text">–</span>
+  </div>
+  <div class="tools">
+    <label class="reviewer">Reviewer <input id="reviewer" type="text" autocomplete="off" placeholder="initials"></label>
+    <button id="btn-summary" type="button">Summary</button>
+    <button id="btn-export" type="button" class="primary">Export TSV</button>
+    <label class="file-btn">Import TSV<input id="file-import" type="file" accept=".tsv,text/tab-separated-values"></label>
+    <button id="btn-reset" type="button" class="danger">Clear</button>
+  </div>
+</header>
+
+<div class="layout">
+  <aside class="list-pane">
+    <div class="filters">
+      <input id="f-search" type="search" placeholder="Search id, headword, entry_ref">
+      <div class="row">
+        <select id="f-stratum" aria-label="Stratum"></select>
+        <select id="f-status" aria-label="Status">
+          <option value="all">All records</option>
+          <option value="unreviewed">Unreviewed</option>
+          <option value="partial">Partly reviewed</option>
+          <option value="complete">Complete</option>
+          <option value="no">Any “no”</option>
+          <option value="uncertain">Any “uncertain”</option>
+          <option value="flagged">Auto-flagged</option>
+          <option value="continuation">Continuation rows</option>
+        </select>
+      </div>
+      <p id="list-count" class="muted"></p>
+    </div>
+    <ol id="record-list" class="record-list"></ol>
+  </aside>
+  <main id="detail" class="detail" tabindex="-1"></main>
+</div>
+
+<dialog id="summary-dialog">
+  <form method="dialog">
+    <h2>Results per stratum</h2>
+    <p class="muted">Only stratum A estimates an overall error rate. Report the others separately.</p>
+    <div id="summary-body"></div>
+    <button type="submit">Close</button>
+  </form>
+</dialog>
+
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="review_data.js"></script>
+<script src="review_core.js"></script>
+<script src="review_app.js"></script>
+</body>
+</html>

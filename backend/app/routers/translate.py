@@ -9,6 +9,7 @@ from app.languages import (
     language_name,
 )
 from app.schemas import TranslateRequest, TranslateResponse
+from app.security import enforce_rate_limit, require_api_key
 from app.services.translation import TranslationService
 
 router = APIRouter(tags=["translation"])
@@ -18,7 +19,12 @@ def _bad_request(code: str, message: str) -> HTTPException:
     return HTTPException(status_code=400, detail={"code": code, "message": message})
 
 
-@router.post("/translate", response_model=TranslateResponse)
+# The rate limit runs first, so failed key guesses are throttled too.
+@router.post(
+    "/translate",
+    response_model=TranslateResponse,
+    dependencies=[Depends(enforce_rate_limit), Depends(require_api_key)],
+)
 def translate(
     payload: TranslateRequest,
     settings: Settings = Depends(get_settings),

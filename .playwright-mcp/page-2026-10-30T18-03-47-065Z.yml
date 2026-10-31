@@ -1,0 +1,47 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - heading "N'Ko decoder review" [level=1] [ref=e4]
+      - paragraph [ref=e5]: Local only · copyrighted excerpts · do not upload or publish
+    - generic [ref=e6]: 0 / 345 complete
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - text: Reviewer
+        - textbox "Reviewer" [ref=e11]:
+          - /placeholder: initials
+      - button "Summary" [ref=e12] [cursor=pointer]
+      - button "Export TSV" [ref=e13] [cursor=pointer]
+      - generic [ref=e14] [cursor=pointer]: Import TSV
+      - button "Clear" [ref=e15] [cursor=pointer]
+  - generic [ref=e16]:
+    - complementary [ref=e17]:
+      - generic [ref=e18]:
+        - searchbox "Search id, headword, entry_ref" [ref=e19]
+        - generic [ref=e20]:
+          - combobox "Stratum" [ref=e21]:
+            - option "All strata" [selected]
+            - option "A_random"
+            - option "B_codes"
+            - option "C_rules"
+            - option "D_candidate"
+            - option "E_structure"
+          - combobox "Status" [ref=e22]:
+            - option "All records" [selected]
+            - option "Unreviewed"
+            - option "Partly reviewed"
+            - option "Complete"
+            - option "Any “no”"
+            - option "Any “uncertain”"
+            - option "Auto-flagged"
+            - option "Continuation rows"
+        - paragraph
+      - list [ref=e23]
+    - main [ref=e24]:
+      - generic [ref=e25]:
+        - 'heading "S345 · (no headword: orphan_lines)" [level=2] [ref=e26]'
+        - generic [ref=e27]: E_structure
+        - generic [ref=e28]: STRONG
+        - generic [ref=e29]: orphan_lines
+      - note [ref=e30]:
+        - strong [ref=e31]: ⚠ continuation bracket contradiction
+        - text: "Suspected incorrect continuation. This row closes 1 bracket(s) that the linked entry p497-c0-e027 (zétète) never opens, so the brackets contradict the link (decoder evidence: reading_order). The correct parent is not known and the row has not been reassigned."

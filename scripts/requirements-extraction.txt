@@ -1,0 +1,14 @@
+# Dependencies for the one-off dictionary extraction and glyph-verification
+# scripts. These are NOT needed to run the translator itself, so they are kept
+# out of backend/requirements.txt.
+#
+#   pip install -r scripts/requirements-extraction.txt
+
+# scripts/extract_dictionary.py
+pypdf>=5.0
+
+# scripts/verify_glyph_mappings.py
+pymupdf>=1.24
+fonttools>=4.50
+pillow>=10.0
+numpy>=1.26
